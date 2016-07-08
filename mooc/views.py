@@ -37,7 +37,7 @@ def mooc_list(request, course_time):
     student = Student.objects.filter(userid=request.user)
     student_grade = int(student[0].grade[0]) + 1
 
-    ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade)
+    ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade).order_by('course_type')
 
     #
     # if len(student) != 0:
