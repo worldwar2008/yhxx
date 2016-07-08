@@ -96,14 +96,16 @@ def course_add(request, id):
         verify_same_time = Course.objects.filter(course_week=course.course_week, course_choose=student)
         tmp_week = course.course_week
 
+
         if int(tmp_week.split("-")[1][0]):
             long_week = tmp_week.split("(")[0]+u"(5-8节)"
             verify_long_course = Course.objects.filter(course_week=long_week, course_choose=student)
             if verify_long_course:
                 return render_to_response('msg.html', {'messages': '对不起, 您已选此时间段的课程, 请重新选择'})
 
-        elif int(tmp_week.split("-")[1][0])==8:
+        if int(tmp_week.split("-")[1][0]) == 8:
             long_week = tmp_week.split("(")[0]+u"(7-8节)"
+
             verify_long_course = Course.objects.filter(course_week=long_week, course_choose=student)
             if verify_long_course:
                 return render_to_response('msg.html', {'messages': '对不起, 您已选此时间段的课程, 请重新选择'})
