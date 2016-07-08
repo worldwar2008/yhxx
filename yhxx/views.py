@@ -83,8 +83,7 @@ def course_canceled(request):
     # 主要是需要筛选掉选课人数不足的学生,这些学生的课程自动释放;
     # 如果选课人数满足要求,则这些学生的课则不能再动了;
     noteach = Course.objects.filter(course_teach__isnull=True)
-    allCourse = Course.objects.all()
-
+    allCourse = Course.objects.all().order_by('course_type')
     insuffStu = []
     for c in allCourse:
         if c.course_min_num == 0:
