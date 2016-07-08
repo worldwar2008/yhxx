@@ -137,9 +137,6 @@ def course_add(request, id):
 
         course_max_num = course.course_max_num
         course_now_num = course.course_choose.count()
-        if course_now_num > course_max_num:
-            return render_to_response('msg.html', {'messages': '对不起, 这门课的选课人数已经超过限制, 请你选修其他课程'})
-
 
         if verify_same_course:
             messages.error(request, '您已选择学习此类课程, 每种课程一周只能选择一次课')
@@ -147,6 +144,8 @@ def course_add(request, id):
         elif verify_same_time:
             messages.error(request, '您已选择学习此时间段的课程, 请重新选择')
             return render_to_response('msg.html', {'messages': '对不起, 您已选择学习此时间段的课程, 请重新选择'})
+        elif course_now_num > course_max_num:
+            return render_to_response('msg.html', {'messages': '对不起, 这门课的选课人数已经超过限制, 请你选修其他课程'})
         else:
             course.course_choose.add(student)
             course.save()
