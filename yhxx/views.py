@@ -18,7 +18,7 @@ def login(request):
     if request.user.is_authenticated():
         if Student.objects.filter(userid=request.user.id):
             # 当前是学生
-            return HttpResponseRedirect('/indexstudent', content_type=RequestContext(request))
+            return HttpResponseRedirect('/index/show', content_type=RequestContext(request))
         else:
             # 当前是教师
             return HttpResponseRedirect('/indexteacher', content_type=RequestContext(request))
@@ -28,7 +28,7 @@ def login(request):
     if user is not None and user.is_active:
         auth.login(request, user)
         if Student.objects.filter(userid=request.user.id):
-            return HttpResponseRedirect('/indexstudent', content_type=RequestContext(request))
+            return HttpResponseRedirect('/index/show', content_type=RequestContext(request))
         else:
             return HttpResponseRedirect('/indexteacher', content_type=RequestContext(request))
     else:
