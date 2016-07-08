@@ -96,10 +96,7 @@ def course_add(request, id):
         verify_same_course = Course.objects.filter(course_name=course.course_name, course_choose=student)
         verify_same_time = Course.objects.filter(course_week=course.course_week, course_choose=student)
         tmp_week = course.course_week
-        print tmp_week
-        print "gggggg", int(tmp_week.split("-")[1][0])
 
-        print "course_name", tmp_week
 
         if int(tmp_week.split("-")[1][0]):
             long_week = tmp_week.split("(")[0]+u"(5-8节)"
