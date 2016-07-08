@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--slider-->
+    <link href="../../static/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="../../static/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.nivo.slider.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider();
+        });
+    </script>
+</head>
+<body>
+<div class="btm_border">
+    <div class="h_bg">
+        <div class="wrap">
+            <div class="header">
+                <div class="logo">
+                    <h1><a href="{% url 'indexstudent' %}"><img src="../../static/images/log3.jpg" alt=""></a></h1>
+                </div>
+{#                <div class="social-icons">#}
+{#                    <br/>#}
+{#                    <ul>#}
+{#                        <li><a class="facebook" href="#" target="_blank"> </a></li>#}
+{#                        <li><a class="twitter" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="googleplus" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="pinterest" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="dribbble" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="vimeo" href="#" target="_blank"></a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+                <div class="clear"></div>
+            </div>
+            <div class='h_btm'>
+                <div class='cssmenu'>
+                    <ul>
+                        <li class='active'><a href="{% url 'indexstudent' %}"><span>主页</span></a></li>
+                        <li><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
+{#                        <li><a href="{% url 'mooc_list' %}"><span>选课</span></a></li>#}
+{#                        <li><a href="{% url 'grade' %}"><span>成绩</span></a></li>#}
+{#                        <li class='has-sub'><a href="{% url 'bill' %}"><span>缴费</span></a></li>#}
+                        <li class='has-sub'><a href="{% url 'course_canceled' %}"><span>公告</span></a></li>
+                        <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="text" value="">
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------ Slider_bg ------------>
+<div class="slider_bg">
+    <div class="wrap">
+        <!------ Slider------------>
+        <div class="slider">
+            <div class="slider-wrapper theme-default">
+                <div id="slider" class="nivoSlider">
+                    <img src="../../static/images/test.jpg" data-thumb="images/1.jpg" alt=""/>
+                    <img src="../../static/images/test3.jpg" data-thumb="images/2.jpg" alt=""/>
+                    <img src="../../static/images/test2.jpeg" data-thumb="images/3.jpg" alt=""/>
+                </div>
+            </div>
+        </div>
+        <!------End Slider ------------>
+        <div class="grids_1_of_3">
+            <div class="grid_1_of_3 images_1_of_3">
+                <img src="../../static/images/icon1.jpg">
+
+                <h3>课程缴费</h3>
+
+                <p align='left'>具体的流程正在设计中,敬请期待!</p>
+            </div>
+            <div class="grid_1_of_3 images_1_of_3">
+                <img src="../../static/images/icon2.jpg">
+
+                <h3>选课人数</h3>
+
+                <p align='left'>新系统将允许学生选择下学期的选修课程。此外，每一个学生可以选择普通、特色、高端三种类型的课程。
+                    普通课每个班级30-40人，特色课开班人数需要大于30，高级课开班人数需要大于18。
+                    选课顺序按照高级、特色、普通顺序筛选，每个等级的课程如果不满足开班人数,则被取消，顺延到下一等级类课程。</p>
+            </div>
+            <div class="grid_1_of_3 images_1_of_3">
+                <img src="../../static/images/icon3.jpg">
+
+                <h3>时间安排</h3>
+
+                <p align='left'>7月10日-7月11日，学生可以登陆系统进行选课。在这个时候学生必须可以登陆系统来添加或删除选修课程。
+                    7月12日会公布选课结果，没有开班成功的学生重新进行一轮选课。7月13日12:00结束本次选课,
+                    还没有选课成功的同学会被自动安排到普通选修课中。选课结束后，在新的学期学生必须按照课表准时上课。</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!--main-->
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="content">
+                <h2>校园心愿墙</h2>
+
+                <h3>LITTLE♬ James，篮球爱好者</h3>
+
+                <p><a href=http://user.qzone.qq.com/1455422561?ptlang=2052><img src="../../static/images/pic1.jpg"></a>
+                    <br/> <br/> <br/>
+                    我有一个梦想，就是希望自己在课外时间可以好好练习篮球，希望在学校里能够认识更多的篮球爱好者，一起进步！
+                    愿篮球中的坚韧、努力、团队合作精神能够指引我们更好的前进。
+                </p>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main_btm">
+        <div class="wrap">
+            <div class="main">
+                <div class="gallery">
+                    <h3>校园一角</h3>
+                    <ul>
+                        <br/>
+                        <li><a href="images/gallery1.jpg"><img src="../../static/images/gallery1.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery2.jpg"><img src="../../static/images/gallery2.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery3.jpg"><img src="../../static/images/gallery3.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery4.jpg"><img src="../../static/images/gallery4.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery5.jpg"><img src="../../static/images/gallery5.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery6.jpg"><img src="../../static/images/gallery6.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery7.jpg"><img src="../../static/images/gallery7.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery8.jpg"><img src="../../static/images/gallery8.jpg" alt=""></a><a
+                                href="#"></a></li>
+                        <li><a href="images/gallery9.jpg"><img src="../../static/images/gallery9.jpg" alt=""></a><a
+                                href="#"></a></li>
+                    </ul>
+                </div>
+                <script type="text/javascript" src="../../static/js/jquery.lightbox.js"></script>
+                <link rel="stylesheet" type="text/css" href="../../static/css/lightbox.css" media="screen">
+                <script type="text/javascript">
+                    $(function () {
+                        $('.gallery a').lightBox();
+                    });
+                </script>
+                <div class="terminals">
+                    <h3>校园文化:</h3>
+
+                    <p>以“一流的学校，一流的教育”为办学目标，以“自信自尊 自立 自强”为校训，继承实验二小的传统——诚 敬 勤
+                        朴；安于其业（事业心）、乐于其业（苦乐观）、日新其业（创新精神），坚持以质量求信誉，以特色求发展（你无我有，你有我优，你优我强），始终把质量放在中心地位，形成怡海教育独特的管理文化和校园文化</p>
+                    <span>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<a href="#">- 北京第二实验小学怡海分校</a></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <div class="footer-bg">
+        <div class="wrap">
+            <div class="footer">
+                <div class="box1">
+                    <h4 class="btm">年级概括</h4>
+
+                    <p> 小学1-5年纪的学生,在选修课的选择上可以根据学生自己的兴趣和特点,选择适合自己的课程</p>
+
+                    <p>当遇到问题时，可及时联系网络管理中心，我们会为广大学生朋友们提供力所能及的帮助。</p>
+                </div>
+                <div class="box1">
+                    <h4 class="btm">课程种类</h4>
+                    <nav>
+                        <ul>
+                            <p>选修课分为标准，特色，高端。 </p>
+
+                            <p>每个类别的课程里面会包含不同类型的课程</p>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="box1">
+                    <h4 class="btm">学校信息</h4>
+
+                    <div class="box1_address">
+                        <p>地址：北京市丰台区</p>
+
+                        <p>信息管理：怡海分校信息管理处 </p>
+
+                        <p>技术维护：怡海分校网络中心 </p>
+
+                        <p>管理员信箱：690008262@qq.com</p>
+
+                        <p>管理员QQ：690008262</p>
+
+                        <p>联系电话：18810276250</p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--footer1-->
+    <div class="ftr-bg">
+        <div class="wrap">
+            <div class="footer">
+                <div class="copy">
+                    <p class="w3-link">&copy; Copyright &copy; 2016.YHXX All rights reserved.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div style="display:none">
+        <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript'
+                charset='gb2312'></script>
+    </div>
+</body>
+</html>
