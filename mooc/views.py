@@ -167,9 +167,18 @@ def course_delete(request, id):
     if len(student) != 0:
         student = student[0]
         verify = Course.objects.filter(id=id, course_choose=student)
+
+        course_max_num = course.course_max_num
+        course_now_num = course.course_choose.count()
+
+
+
         if not verify:
             messages.error(request, '您未选择学习此课程')
             return render_to_response('msg.html', {'messages': '对不起,您未选择学习此课程!'})
+        elif course_now_num >= course_max_num:
+            return render_to_response('msg.html', {'messages': '对不起, 已满足开班人数的课程, 不能推选'})
+
         else:
             course.course_choose.remove(student)
             course.save()
