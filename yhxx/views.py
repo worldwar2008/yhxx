@@ -84,5 +84,11 @@ def course_canceled(request):
     # 如果选课人数满足要求,则这些学生的课则不能再动了;
     noteach = Course.objects.filter(course_teach__isnull=True)
     allCourse = Course.objects.all()
-    insuffStu = [c for c in allCourse if c.course_choose.count() < 10]
+
+    insuffStu = []
+    for c in allCourse:
+        if c.course_min_num == 0:
+            pass
+        elif c.course_choose.count() < c.course_min_num:
+            insuffStu.append(c)
     return render(request, 'course_canceled_meihua.html', {'noteach': noteach, 'insuffStu': insuffStu})
