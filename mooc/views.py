@@ -83,7 +83,7 @@ def course_add(request, id):
     gd_st = "2016-07-08 15:00:00"
     gd_et = "2016-07-08 20:00:00"
 
-    ts_st = "2016-09-01 00:00:00"
+    ts_st = "2016-09-08 00:00:00"
     ts_et = "2016-10-01 00:00:00"
 
     bz_st = "2016-09-01 00:00:00"
@@ -95,6 +95,18 @@ def course_add(request, id):
         student = student[0]
         verify_same_course = Course.objects.filter(course_name=course.course_name, course_choose=student)
         verify_same_time = Course.objects.filter(course_week=course.course_week, course_choose=student)
+        tmp_week = course.course_week
+        print tmp_week
+        print "gggggg", int(tmp_week.split("-")[1][0])
+
+        print "course_name", tmp_week
+
+        if int(tmp_week.split("-")[1][0]):
+            long_week = tmp_week.split("(")[0]+u"(5-8节)"
+            print "long_week", long_week
+            verify_long_course = Course.objects.filter(course_week=long_week, course_choose=student)
+            if verify_long_course:
+                return render_to_response('msg.html', {'messages': '对不起, 您已选此时间段的课程, 请重新选择'})
 
         now_time = datetime.now()
 
@@ -199,11 +211,166 @@ def show_my_course(request):
         my_course = student.course_set.all().order_by('course_week')
         selected_course_weeks = [c.course_week for c in my_course]
         sumPrice = sum([c.course_price for c in my_course])
+        selected_course_names = [c.course_name for c in my_course]
         student_name = student.name_zh
+        formated_course_56 = []
+        formated_course_78 = []
+
+        if int(student.grade[0])+1 == 3:
+
+
+            if u"周一(5-6节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周一(5-6节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+
+            elif u"周一(5-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周一(5-8节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_56.append("待选")
+
+            if u"周一(7-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周一(7-8节)" in item :
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_78.append("待选")
+
+            # 周二 u
+            formated_course_56.append("实践")
+            formated_course_78.append("实践")
+
+            if u"周三(5-6节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周三(5-6节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+
+            elif u"周三(5-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周三(5-8节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_56.append("待选")
+
+            if u"周三(7-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周三(7-8节)" in item :
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_78.append("待选")
+
+
+            if u"周四(5-6节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周四(5-6节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+
+            if u"周四(5-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周四(5-8节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_56.append("待选")
+
+            if u"周四(7-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周四(7-8节)" in item :
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_78.append("待选")
+
+
+            formated_course_56.append("班队会")
+            formated_course_78.append("班队会")
+
+        elif int(student.grade[0])+1 == 5:
+
+
+            if u"周一(5-6节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周一(5-6节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+
+            if u"周一(5-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周一(5-8节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_56.append("待选")
+
+            if u"周一(7-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周一(7-8节)" in item :
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_78.append("待选")
+
+
+            if u"周二(5-6节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周二(5-6节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+
+            if u"周二(5-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周二(5-8节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_56.append("待选")
+
+            if u"周二(7-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周二(7-8节)" in item :
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_78.append("待选")
+            # 周二 u
+            formated_course_56.append("实践")
+            formated_course_78.append("实践")
+
+
+
+            if u"周四(5-6节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周四(5-6节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+
+            elif u"周四(5-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周四(5-8节)" in item :
+                        formated_course_56.append(selected_course_names[index])
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_56.append("待选")
+
+            if u"周四(7-8节)" in selected_course_weeks:
+                for index, item in enumerate(selected_course_weeks):
+                    if u"周四(7-8节)" in item :
+                        formated_course_78.append(selected_course_names[index])
+            else:
+                formated_course_78.append("待选")
+
+
+            formated_course_56.append("班队会")
+            formated_course_78.append("班队会")
+
+        formated_course_56.reverse()
+        formated_course_78.reverse()
+        print "formated_course_56", formated_course_56
+        print "formated_course_78", formated_course_78
+
 
         return render(request, 'mooc_select_show.html',
                       {'my_course': my_course, 'sumPrice': sumPrice, 'selected_course_names': selected_course_weeks,
-                       'student_name':student_name})
+                       'student_name':student_name, 'formated_course_56': formated_course_56,
+                       'formated_course_78': formated_course_78, 'student_grade':int(student.grade[0])+1})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.all().order_by('id')

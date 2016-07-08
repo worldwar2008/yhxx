@@ -233,7 +233,7 @@
                     <h2 class="sum_price"><a href="http://www.yhxx.org/a/xuanxiukechengjieshao/tesekecheng/">特色课程介绍链接</a></h2>
                     <h2 class="sum_price"><a href="http://www.yhxx.org/a/xuanxiukechengjieshao/gaoduankecheng/">高端课程介绍链接</a></h2>
                     <h2 class="sum_price"> 课程总费用: {{ sumPrice }}
-                        <p>  </p>
+                    <p>  </p>
                     <p class=""sum_price> 选择高端课程的用户</p>
                     <p class="sum_price"> 等高端课程选择结束之后, 请于7月11日上午到学校缴费。</p>
                     <h3 ALIGN="CENTER">课程表</h3>
@@ -292,42 +292,24 @@
                             {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
                             {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
 
-                            {% if '周一(5-6节)' in selected_course_names %}
-                                {% for mc in my_course %}
-                                    {% if mc.course_week == '周一(5-6节)' %}
-{#                                        <td WIDTH=300 HEIGHT=50>{{ mc.course_name }}</td>#}
-                                        <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=156%}">{{ mc.course_name }}</a></td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=156%}">待选</a></td>
+
+
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=156%}">{{ formated_course_56.pop }}</a></td>
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
+                            {% elif student_grade == 5 %}
+
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=256%}">{{ formated_course_56.pop }}</a></td>
                             {% endif %}
 
-                            <td WIDTH=250 HEIGHT=50>实践</td>
-
-                            {% if '周三(5-6节)' in selected_course_names %}
-                                {% for mc in my_course %}
-                                    {% if mc.course_week == '周三(5-6节)' %}
-{#                                        <td WIDTH=250 HEIGHT=50>{{ mc.course_name }}</td>#}
-                                        <td WIDTH=250 HEIGHT=50><a href="{% url 'mooc_list' course_time=356%}">{{ mc.course_name }}</a></td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <td WIDTH=250 HEIGHT=50><a href="{% url 'mooc_list' course_time=356%}">待选</a></td>
-                            {% endif %}
-                            {% if '周四(5-6节)' in selected_course_names %}
-                                {% for mc in my_course %}
-                                    {% if mc.course_week == '周四(5-6节)' %}
-{#                                        <td WIDTH=250 HEIGHT=50>{{ mc.course_name }}</td>#}
-                                        <td WIDTH=250 HEIGHT=50><a href="{% url 'mooc_list' course_time=456%}">{{ mc.course_name }}</a></td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <td WIDTH=250 HEIGHT=50><a href="{% url 'mooc_list' course_time=456%}">待选</a></td>
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=356%}">{{ formated_course_56.pop }}</a></td>
+                            {% elif student_grade == 5 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
                             {% endif %}
 
-                            <td WIDTH=250 HEIGHT=50>班队会</td>
-
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=456%}">{{ formated_course_56.pop }}</a></td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
 
 
 
@@ -340,43 +322,23 @@
                         <tr ALIGN="LEFT">
                             {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
                             <td WIDTH=300 HEIGHT=40>下午(7-8节)</td>
-                            {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
-                            {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
-                            {% if '周一(7-8节)' in selected_course_names %}
-                                {% for mc in my_course %}
-                                    {% if mc.course_week == '周一(7-8节)' %}
-{#                                        <td WIDTH=300 HEIGHT=40>{{ mc.course_name }}</td>#}
-                                        <td WIDTH=300 HEIGHT=40><a href="{% url 'mooc_list' course_time=178%}">{{ mc.course_name }}</a></td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <td WIDTH=300 HEIGHT=40><a href="{% url 'mooc_list' course_time=178%}">待选</a></td>
+
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=178%}">{{ formated_course_78.pop }}</a></td>
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+                            {% elif student_grade == 5 %}
+
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=278%}">{{ formated_course_78.pop }}</a></td>
                             {% endif %}
 
-                            <td WIDTH=250 HEIGHT=40>实践</td>
-
-                            {% if '周三(7-8节)' in selected_course_names %}
-                                {% for mc in my_course %}
-                                    {% if mc.course_week == '周三(7-8节)' %}
-{#                                        <td WIDTH=250 HEIGHT=40>{{ mc.course_name }}</td>#}
-                                        <td WIDTH=250 HEIGHT=40><a href="{% url 'mooc_list' course_time=378%}">{{ mc.course_name }}</a></td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <td WIDTH=250 HEIGHT=40><a href="{% url 'mooc_list' course_time=378%}">待选</a></td>
-                            {% endif %}
-                            {% if '周四(7-8节)' in selected_course_names %}
-                                {% for mc in my_course %}
-                                    {% if mc.course_week == '周四(7-8节)' %}
-{#                                        <td WIDTH=250 HEIGHT=40>{{ mc.course_name }}</td>#}
-                                        <td WIDTH=250 HEIGHT=40><a href="{% url 'mooc_list' course_time=478%}">{{ mc.course_name }}</a></td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <td WIDTH=250 HEIGHT=40><a href="{% url 'mooc_list' course_time=478%}">待选</a></td>
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=378%}">{{ formated_course_78.pop }}</a></td>
+                            {% elif student_grade == 5 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
                             {% endif %}
 
-                            <td WIDTH=250 HEIGHT=40>班队会</td>
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=478%}">{{ formated_course_78.pop }}</a></td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
 
 
                         </tr>
