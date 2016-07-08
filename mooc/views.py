@@ -29,15 +29,28 @@ def mooc_list(request, course_time):
     elif tmp_time[0] == "5":
         tmp_week += "周五"
 
+    long_tmp_week = ""
+    if int(tmp_time[1])==5:
+        long_tmp_week += tmp_week + "(5-8节)"
+    if int(tmp_time[-1]) == 8:
+        long_tmp_week += tmp_week + "(5-8节)"
+
+
+
     if tmp_time[1:] == "56":
         tmp_week += "(5-6节)"
     elif tmp_time[1:] == "78":
         tmp_week += "(7-8节)"
 
+
     student = Student.objects.filter(userid=request.user)
     student_grade = int(student[0].grade[0]) + 1
 
     ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade).order_by('course_type')
+
+    long_ml = Course.objects.filter(course_week=long_tmp_week, course_grade=student_grade).order_by('course_type')
+    print "long_tmp_week", long_tmp_week
+    print "long_ml", long_ml
 
     #
     # if len(student) != 0:
@@ -45,8 +58,11 @@ def mooc_list(request, course_time):
     #     my_course = student.course_set.all().order_by('course_week')
     #     selected_course_weeks = [c.course_week for c in my_course]
     #     sumPrice = sum([c.course_price for c in my_course])
+    if len(long_ml) == 0:
 
-    return render_to_response('mooc_list.html', {'ml': ml})
+        return render_to_response('mooc_list.html', {'ml': ml})
+    else:
+        return render_to_response('mooc_list.html', {'ml': ml, 'long_ml':long_ml})
 
 
 @login_required
