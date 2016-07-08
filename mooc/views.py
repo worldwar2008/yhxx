@@ -80,7 +80,7 @@ def course_add(request, id):
     course = Course.objects.get(id=id)
     dir = '/index/show'
 
-    gd_st = "2016-07-08 14:00:00"
+    gd_st = "2016-07-08 15:00:00"
     gd_et = "2016-07-08 20:00:00"
 
     ts_st = "2016-09-01 00:00:00"
@@ -118,6 +118,13 @@ def course_add(request, id):
         if course.course_type == u"标准":
             if now_time < bz_s:
                 return render_to_response('msg.html', {'messages': '对不起, 标准选课还没开始'})
+
+        # course max num limit
+
+        course_max_num = course.course_max_num
+        course_now_num = course.course_choose.count()
+        if course_now_num > course_max_num:
+            return render_to_response('msg.html', {'messages': '对不起, 这门课的选课人数已经超过限制, 请你选修其他课程'})
 
 
         if verify_same_course:
