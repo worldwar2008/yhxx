@@ -82,11 +82,11 @@ def course_add(request, id):
     gd_st = "2016-07-08 15:00:00"
     gd_et = "2016-07-08 20:00:00"
 
-    ts_st = "2016-09-08 00:00:00"
-    ts_et = "2016-10-01 00:00:00"
+    ts_st = "2016-07-09 10:00:00"
+    ts_et = "2016-07-09 20:00:00"
 
-    bz_st = "2016-09-01 00:00:00"
-    bz_et = "2016-10-01 00:00:00"
+    bz_st = "2016-07-11 10:00:00"
+    bz_et = "2016-07-11 20:00:00"
 
     if len(student) != 0:
         # dir = '/mooc/' + id
@@ -170,6 +170,16 @@ def course_delete(request, id):
     student = Student.objects.filter(userid=request.user)
     course = Course.objects.get(id=id)
     dir = '/index/show'
+
+    gd_st = "2016-07-08 15:00:00"
+    gd_et = "2016-07-08 20:00:00"
+
+    ts_st = "2016-07-09 10:00:00"
+    ts_et = "2016-07-09 20:00:00"
+
+    bz_st = "2016-07-11 10:00:00"
+    bz_et = "2016-07-11 20:00:00"
+
     if len(student) != 0:
         student = student[0]
         verify = Course.objects.filter(id=id, course_choose=student)
@@ -177,6 +187,30 @@ def course_delete(request, id):
         course_max_num = course.course_max_num
         course_min_num = course.course_min_num
         course_now_num = course.course_choose.count()
+
+        now_time = datetime.now()
+
+        gd_s = datetime.strptime(gd_st,"%Y-%m-%d %H:%M:%S")
+        gd_e = datetime.strptime(gd_et,"%Y-%m-%d %H:%M:%S")
+
+        ts_s = datetime.strptime(ts_st,"%Y-%m-%d %H:%M:%S")
+        ts_e = datetime.strptime(ts_et,"%Y-%m-%d %H:%M:%S")
+
+        bz_s = datetime.strptime(bz_st,"%Y-%m-%d %H:%M:%S")
+        bz_e = datetime.strptime(bz_et,"%Y-%m-%d %H:%M:%S")
+
+        if course.course_type[0] == u"高":
+            if now_time > gd_e:
+                return render_to_response('msg.html', {'messages': '对不起, 高端课程选课已经结束, 你无法进行相关操作'})
+
+        if course.course_type[0] == u"特":
+            if now_time > ts_e:
+                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
+
+        if course.course_type[0] == u"标":
+            if now_time > bz_e:
+                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
+
 
 
 
