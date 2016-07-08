@@ -71,6 +71,7 @@
                             <th ALIGN="LEFT" WIDTH=200>课程名称</th>
                             <th ALIGN="LEFT" WIDTH=200>课程类型</th>
                             <th ALIGN="LEFT" WIDTH=200>上课时间</th>
+                            <th ALIGN="LEFT" WIDTH=200>课程费用</th>
                             <th ALIGN="LEFT" WIDTH=200>已选人数</th>
 
 
@@ -83,6 +84,7 @@
                                         href="{% url 'mooc_detail' id=classes.id %}">{{ classes.course_name }}</a></td>
                                 <td WIDTH=200>{{ classes.course_type }}   </td>
                                 <td WIDTH=200>{{ classes.course_week }}   </td>
+                                <td WIDTH=200>{{ classes.course_price }}   </td>
                                 <td WIDTH=200>{{ classes.course_choose.count }}   </td>
 
                             </tr>
