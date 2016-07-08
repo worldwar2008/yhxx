@@ -163,6 +163,14 @@
     .blue {
         color: #0000FF;
     }
+    .student_name {
+        text-align: right;
+
+    }
+    .sum_price {
+        text-align: left;
+
+    }
 </style>
 
 <body>
@@ -211,11 +219,19 @@
     </div>
 </div>
 <!--main-->
+
 <div class="main_btm">
     <div class="wrap">
         <div class="main">
             <div br class="about-us">
                 <div class="about-header">
+                    <h2 class="student_name">你好, {{ student_name }}</h2>
+                    <h2 class="sum_price"> 课程总费用: {{ sumPrice }}
+                        <p>  </p>
+                    <p class=""sum_price> 选择高端课程的用户</p>
+                    <p class="sum_price"> 等高端课程选择结束之后, 请于7月11日上午到学校缴费。</p>
+
+
                     <h3 ALIGN="CENTER">课程表</h3>
 
                     <div class="clear"></div>

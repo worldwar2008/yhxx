@@ -58,6 +58,7 @@ class Course(models.Model):
     course_week = models.CharField(max_length=50, blank=True, null=True)
     course_time = models.TimeField(blank=True, null=True)
     course_min_num = models.IntegerField(blank=True, null=True)
+    course_max_num = models.IntegerField(blank=True, null=True)
     course_type = models.CharField(max_length=50, blank=True, null=True)
     course_price = models.IntegerField(blank=True, null=True)
 

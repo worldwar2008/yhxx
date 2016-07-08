@@ -7,6 +7,7 @@ from django.contrib import messages
 from forms import *
 from django.forms.formsets import formset_factory
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 # Create your views here.
@@ -17,26 +18,26 @@ def mooc_list(request, course_time):
     tmp_time = str(course_time)
     tmp_week = ""
 
-    if tmp_time[0]=="1":
-        tmp_week+= "周一"
-    elif tmp_time[0]=="2":
-        tmp_week+= "周二"
-    elif tmp_time[0]=="3":
-        tmp_week+="周三"
-    elif tmp_time[0]=="4":
-        tmp_week+="周四"
-    elif tmp_time[0]=="5":
-        tmp_week+="周五"
+    if tmp_time[0] == "1":
+        tmp_week += "周一"
+    elif tmp_time[0] == "2":
+        tmp_week += "周二"
+    elif tmp_time[0] == "3":
+        tmp_week += "周三"
+    elif tmp_time[0] == "4":
+        tmp_week += "周四"
+    elif tmp_time[0] == "5":
+        tmp_week += "周五"
 
-    if tmp_time[1:]=="56":
-        tmp_week+="(5-6节)"
-    elif tmp_time[1:]=="78":
-        tmp_week+="(7-8节)"
+    if tmp_time[1:] == "56":
+        tmp_week += "(5-6节)"
+    elif tmp_time[1:] == "78":
+        tmp_week += "(7-8节)"
 
     student = Student.objects.filter(userid=request.user)
-    student_grade = int(student[0].grade[0])+1
+    student_grade = int(student[0].grade[0]) + 1
 
-    ml = Course.objects.filter(course_week=tmp_week,course_grade=student_grade)
+    ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade)
 
     #
     # if len(student) != 0:
@@ -63,12 +64,45 @@ def course_add(request, id):
     course = Course.objects.get(id=id)
     dir = '/index/show'
 
+    gd_st = "2016-07-08 14:00:00"
+    gd_et = "2016-07-08 20:00:00"
+
+    ts_st = "2016-09-01 00:00:00"
+    ts_et = "2016-10-01 00:00:00"
+
+    bz_st = "2016-09-01 00:00:00"
+    bz_et = "2016-10-01 00:00:00"
+
     if len(student) != 0:
-        #dir = '/mooc/' + id
+        # dir = '/mooc/' + id
         dir = '/index/show'
         student = student[0]
         verify_same_course = Course.objects.filter(course_name=course.course_name, course_choose=student)
         verify_same_time = Course.objects.filter(course_week=course.course_week, course_choose=student)
+
+        now_time = datetime.now()
+
+        gd_s = datetime.strptime(gd_st,"%Y-%m-%d %H:%M:%S")
+        gd_e = datetime.strptime(gd_et,"%Y-%m-%d %H:%M:%S")
+
+        ts_s = datetime.strptime(ts_st,"%Y-%m-%d %H:%M:%S")
+        ts_e = datetime.strptime(ts_et,"%Y-%m-%d %H:%M:%S")
+
+        bz_s = datetime.strptime(bz_st,"%Y-%m-%d %H:%M:%S")
+        bz_e = datetime.strptime(bz_et,"%Y-%m-%d %H:%M:%S")
+
+        if course.course_type[0] == u"高":
+            if now_time < gd_s:
+                return render_to_response('msg.html', {'messages': '对不起, 高端选课还没开始'})
+
+        if course.course_type == u"特色":
+            if now_time < ts_s:
+                return render_to_response('msg.html', {'messages': '对不起, 特色选课还没开始'})
+
+        if course.course_type == u"标准":
+            if now_time < bz_s:
+                return render_to_response('msg.html', {'messages': '对不起, 标准选课还没开始'})
+
 
         if verify_same_course:
             messages.error(request, '您已选择学习此类课程, 每种课程一周只能选择一次课')
@@ -142,7 +176,11 @@ def show_my_course(request):
         my_course = student.course_set.all().order_by('course_week')
         selected_course_weeks = [c.course_week for c in my_course]
         sumPrice = sum([c.course_price for c in my_course])
-        return render(request, 'mooc_select_show.html', {'my_course': my_course, 'sumPrice': sumPrice,'selected_course_names':selected_course_weeks})
+        student_name = student.name_zh
+
+        return render(request, 'mooc_select_show.html',
+                      {'my_course': my_course, 'sumPrice': sumPrice, 'selected_course_names': selected_course_weeks,
+                       'student_name':student_name})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.all().order_by('id')
