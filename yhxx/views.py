@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def prepare(request):
-    return render(request,'prepare.html')
+    return render(request, 'prepare.html')
 
 
 def login(request):
@@ -90,4 +90,19 @@ def course_canceled(request):
             pass
         elif c.course_choose.count() < c.course_min_num:
             insuffStu.append(c)
-    return render(request, 'course_canceled_meihua.html', {'noteach': noteach, 'insuffStu': insuffStu})
+    above_min_num_classes = []
+    for c in allCourse:
+        if c.course_min_num == 0:
+            pass
+        elif c.course_choose.count() >= c.course_min_num:
+            above_min_num_classes.append(c)
+    above_min_num_count = []
+    for c in allCourse:
+        if c.course_min_num == 0:
+            pass
+        elif c.course_choose.count() >= c.course_min_num:
+            above_min_num_count.append(c.course_choose.count())
+
+    return render(request, 'course_canceled_meihua.html',
+                  {'noteach': noteach, 'insuffStu': insuffStu, 'above_min_num_classes': above_min_num_classes,
+                   'above_min_num_count': above_min_num_count})
