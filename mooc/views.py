@@ -100,7 +100,6 @@ def course_add(request, id):
 
         if int(tmp_week.split("-")[1][0]):
             long_week = tmp_week.split("(")[0]+u"(5-8节)"
-            print "long_week", long_week
             verify_long_course = Course.objects.filter(course_week=long_week, course_choose=student)
             if verify_long_course:
                 return render_to_response('msg.html', {'messages': '对不起, 您已选此时间段的课程, 请重新选择'})
