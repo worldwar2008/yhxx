@@ -280,7 +280,7 @@ def show_my_course(request):
                     if u"周四(5-6节)" in item :
                         formated_course_56.append(selected_course_names[index])
 
-            if u"周四(5-8节)" in selected_course_weeks:
+            elif u"周四(5-8节)" in selected_course_weeks:
                 for index, item in enumerate(selected_course_weeks):
                     if u"周四(5-8节)" in item :
                         formated_course_56.append(selected_course_names[index])
@@ -307,7 +307,7 @@ def show_my_course(request):
                     if u"周一(5-6节)" in item :
                         formated_course_56.append(selected_course_names[index])
 
-            if u"周一(5-8节)" in selected_course_weeks:
+            elif u"周一(5-8节)" in selected_course_weeks:
                 for index, item in enumerate(selected_course_weeks):
                     if u"周一(5-8节)" in item :
                         formated_course_56.append(selected_course_names[index])
@@ -328,11 +328,10 @@ def show_my_course(request):
                     if u"周二(5-6节)" in item :
                         formated_course_56.append(selected_course_names[index])
 
-            if u"周二(5-8节)" in selected_course_weeks:
+            elif u"周二(5-8节)" in selected_course_weeks:
                 for index, item in enumerate(selected_course_weeks):
                     if u"周二(5-8节)" in item :
                         formated_course_56.append(selected_course_names[index])
-                        formated_course_78.append(selected_course_names[index])
             else:
                 formated_course_56.append("待选")
 
@@ -340,6 +339,8 @@ def show_my_course(request):
                 for index, item in enumerate(selected_course_weeks):
                     if u"周二(7-8节)" in item :
                         formated_course_78.append(selected_course_names[index])
+            elif u"周二(5-8节)" in selected_course_weeks:
+                formated_course_78.append(selected_course_names[index])
             else:
                 formated_course_78.append("待选")
             # 周二 u
