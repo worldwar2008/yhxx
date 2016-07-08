@@ -24,17 +24,17 @@
                 <div class="logo">
                     <h1><a href="{% url 'indexstudent' %}"><img src="../../static/images/log3.jpg" alt=""></a></h1>
                 </div>
-{#                <div class="social-icons">#}
-{#                    <br/>#}
-{#                    <ul>#}
-{#                        <li><a class="facebook" href="#" target="_blank"> </a></li>#}
-{#                        <li><a class="twitter" href="#" target="_blank"></a></li>#}
-{#                        <li><a class="googleplus" href="#" target="_blank"></a></li>#}
-{#                        <li><a class="pinterest" href="#" target="_blank"></a></li>#}
-{#                        <li><a class="dribbble" href="#" target="_blank"></a></li>#}
-{#                        <li><a class="vimeo" href="#" target="_blank"></a></li>#}
-{#                    </ul>#}
-{#                </div>#}
+                {#                <div class="social-icons">#}
+                {#                    <br/>#}
+                {#                    <ul>#}
+                {#                        <li><a class="facebook" href="#" target="_blank"> </a></li>#}
+                {#                        <li><a class="twitter" href="#" target="_blank"></a></li>#}
+                {#                        <li><a class="googleplus" href="#" target="_blank"></a></li>#}
+                {#                        <li><a class="pinterest" href="#" target="_blank"></a></li>#}
+                {#                        <li><a class="dribbble" href="#" target="_blank"></a></li>#}
+                {#                        <li><a class="vimeo" href="#" target="_blank"></a></li>#}
+                {#                    </ul>#}
+                {#                </div>#}
                 <div class="clear"></div>
             </div>
             <div class='h_btm'>
@@ -42,9 +42,9 @@
                     <ul>
                         <li class='active'><a href="{% url 'indexstudent' %}"><span>主页</span></a></li>
                         <li><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
-{#                        <li><a href="{% url 'mooc_list' %}"><span>选课</span></a></li>#}
-{#                        <li><a href="{% url 'grade' %}"><span>成绩</span></a></li>#}
-{#                        <li class='has-sub'><a href="{% url 'bill' %}"><span>缴费</span></a></li>#}
+                        {#                        <li><a href="{% url 'mooc_list' %}"><span>选课</span></a></li>#}
+                        {#                        <li><a href="{% url 'grade' %}"><span>成绩</span></a></li>#}
+                        {#                        <li class='has-sub'><a href="{% url 'bill' %}"><span>缴费</span></a></li>#}
                         <li class='has-sub'><a href="{% url 'course_canceled' %}"><span>公告</span></a></li>
                         <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
                         <div class="clear"></div>
@@ -81,25 +81,52 @@
 
                 <h3>课程缴费</h3>
 
-                <p align='left'>具体的流程正在设计中,敬请期待!</p>
+                <p align='left'>只有高端课程需要缴纳由于和外部合作造成的费用, 其他类型的课程都免费.</p>
             </div>
             <div class="grid_1_of_3 images_1_of_3">
                 <img src="../../static/images/icon2.jpg">
 
-                <h3>选课人数</h3>
+                <h3>课程说明</h3>
 
-                <p align='left'>新系统将允许学生选择下学期的选修课程。此外，每一个学生可以选择普通、特色、高端三种类型的课程。
-                    普通课每个班级30-40人，特色课开班人数需要大于30，高级课开班人数需要大于18。
-                    选课顺序按照高级、特色、普通顺序筛选，每个等级的课程如果不满足开班人数,则被取消，顺延到下一等级类课程。</p>
+                <h2>标准课程: </h2>
+
+                <p align='left'>
+                    国家课程，按照统一的学科《课程标准》、教学计划、教学要求、课时安排进行授课。以2节课为一个单元进行安排（大课）。</p>
+
+                <h2><a href="http://www.yhxx.org/a/xuanxiukechengjieshao/tesekecheng/">特色课程：</a></h2>
+
+                <p align="left">
+                    由学校统一规划、自主研发、利于培养学生个性的课程；由优秀教师授课，制定课程标准，按计划授课。以2节课为一个单元进行安排（大课）。
+                </p>
+
+                <h2><a href="http://www.yhxx.org/a/xuanxiukechengjieshao/gaoduankecheng/">高端课程：</a></h2>
+
+                <p align="left"> 引进校外优质教育资源合作，共同开发的利于培养学生个性、特长的高端课程。授课与体验活动、竞赛、游学活动相结合的特色课程。网球、击剑、马术、综艺拓展、冰球、花样滑冰以半日为一个单元进行安排。
+                </p>
             </div>
+
             <div class="grid_1_of_3 images_1_of_3">
                 <img src="../../static/images/icon3.jpg">
 
-                <h3>时间安排</h3>
 
-                <p align='left'>7月10日-7月11日，学生可以登陆系统进行选课。在这个时候学生必须可以登陆系统来添加或删除选修课程。
-                    7月12日会公布选课结果，没有开班成功的学生重新进行一轮选课。7月13日12:00结束本次选课,
-                    还没有选课成功的同学会被自动安排到普通选修课中。选课结束后，在新的学期学生必须按照课表准时上课。</p>
+                <h3>时间安排</h3>
+                <h2><a href="http://www.yhxx.org/a/xuanxiukechengjieshao/2016/0708/310.html">选课规则及说明</a></h2>
+                <p align='left'>家长进入网站，了解各课程的介绍以及选课的相关程序，完成高端课程选课。国家课程、特色课程的选课，学校会提前以各种方式提示给家长，请家长按程序、按要求为孩子选课。</p>
+                <p align="left">1.特色课程以一学期为单位进行选修；高端课程是以学年为单位进行选课。</p>
+                <p align="left">2.建议家长根据孩子的兴趣、爱好，自愿选择。</p>
+                <p align="left">3.每个孩子每周最多只能选择3门特色课程；</p>
+                <p align="left">4.我们有班额的限制。国家课程和特色课程的每班人数不低于40人。不足人数的不开班。因为班额不足而取消开班，选择这个班的学生有二次选择其他课程的机会。</p>
+                <p align="left">5.特殊情况的处理：</p>
+                <p align="left">如果某个年级没有一个学生选择选修课程，那么这个年级我们就还是按照国家课程计划开设课程。
+同样，某一个班级也是如此，没有一个学生进行选修，这个班级整体按照国家课程开课。
+如果各班都有部分学生选修特色和高端课程，剩余选修国家课程的学生，我们会根据人数，将学生合班授课。</p>
+
+
+
+
+
+
+
             </div>
             <div class="clear"></div>
         </div>
