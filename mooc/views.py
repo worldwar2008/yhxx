@@ -190,7 +190,7 @@ def course_delete(request, id):
     dir = '/index/show'
 
     gd_st = "2016-07-08 15:00:00"
-    gd_et = "2016-07-09 09:30:00"
+    gd_et = "2016-07-10 09:30:00"
 
     ts_st = "2016-07-09 10:00:00"
     ts_et = "2016-07-10 14:00:00"
@@ -217,17 +217,7 @@ def course_delete(request, id):
         bz_s = datetime.strptime(bz_st,"%Y-%m-%d %H:%M:%S")
         bz_e = datetime.strptime(bz_et,"%Y-%m-%d %H:%M:%S")
 
-        if course.course_type[0] == u"高":
-            if now_time > gd_e:
-                return render_to_response('msg.html', {'messages': '对不起, 高端课程选课已经结束, 你无法进行相关操作'})
 
-        if course.course_type[0] == u"特":
-            if now_time > ts_e:
-                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
-
-        if course.course_type[0] == u"标":
-            if now_time > bz_e:
-                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
 
 
 
@@ -239,12 +229,26 @@ def course_delete(request, id):
             return render_to_response('msg.html', {'messages': '对不起, 当前已满足开班人数的课程, 不能推选'})
         elif course_now_num >= course_min_num:
             return render_to_response('msg.html', {'messages': '对不起, 当前课程已经满足开课的最小人数, 无法删除'})
+        elif course.course_type[0] == u"高":
+            if now_time > gd_e:
+                return render_to_response('msg.html', {'messages': '对不起, 高端课程选课已经结束, 你无法进行相关操作'})
+
+        elif course.course_type[0] == u"特":
+            if now_time > ts_e:
+                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
+
+        elif course.course_type[0] == u"标":
+            if now_time > bz_e:
+                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
 
         else:
             course.course_choose.remove(student)
             course.save()
             messages.success(request, "你已经成功删除此课程")
             return render_to_response('msg.html', {'messages': "你已经成功删除此课程!"})
+
+
+
     else:
         teacher = Teacher.objects.get(userid=request.user)
         verify = Course.objects.filter(id=id, course_teach=teacher)
