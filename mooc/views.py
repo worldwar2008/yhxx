@@ -217,8 +217,15 @@ def course_delete(request, id):
         bz_s = datetime.strptime(bz_st,"%Y-%m-%d %H:%M:%S")
         bz_e = datetime.strptime(bz_et,"%Y-%m-%d %H:%M:%S")
 
-
-
+        if course.course_type[0] == u"高":
+            if now_time > gd_e:
+                return render_to_response('msg.html', {'messages': '对不起, 高端课程选课已经结束, 你无法进行相关操作'})
+        if course.course_type[0] == u"特":
+            if now_time > ts_e:
+                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
+        if course.course_type[0] == u"标":
+            if now_time > bz_e:
+                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
 
 
 
@@ -229,17 +236,7 @@ def course_delete(request, id):
             return render_to_response('msg.html', {'messages': '对不起, 当前已满足开班人数的课程, 不能退选'})
         elif course_now_num >= course_min_num:
             return render_to_response('msg.html', {'messages': '对不起, 当前课程已经满足开课的最小人数, 无法删除'})
-        elif course.course_type[0] == u"高":
-            if now_time > gd_e:
-                return render_to_response('msg.html', {'messages': '对不起, 高端课程选课已经结束, 你无法进行相关操作'})
 
-        elif course.course_type[0] == u"特":
-            if now_time > ts_e:
-                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
-
-        elif course.course_type[0] == u"标":
-            if now_time > bz_e:
-                return render_to_response('msg.html', {'messages': '对不起, 特色课程选课已经结束, 你无法进行相关操作'})
 
         else:
             course.course_choose.remove(student)
