@@ -96,6 +96,13 @@ def course_add(request, id):
         verify_same_time = Course.objects.filter(course_week=course.course_week, course_choose=student)
         tmp_week = course.course_week
 
+        verify_tese_class_num = Course.objects.filter(course_type=u"特色", course_choose=student).count()
+
+
+        if verify_tese_class_num >= 3:
+            return render_to_response('msg.html', {'messages': '对不起, 您选择的特色课程数目已经超过3个, 不能再多选'})
+
+
 
         if int(tmp_week.split("-")[1][0]):
             long_week = tmp_week.split("(")[0]+u"(5-8节)"
@@ -144,8 +151,8 @@ def course_add(request, id):
         elif verify_same_time:
             messages.error(request, '您已选择学习此时间段的课程, 请重新选择')
             return render_to_response('msg.html', {'messages': '对不起, 您已选择学习此时间段的课程, 请重新选择'})
-        elif course_now_num > course_max_num:
-            return render_to_response('msg.html', {'messages': '对不起, 这门课的选课人数已经超过限制, 请你选修其他课程'})
+        elif course_now_num >= course_max_num:
+            return render_to_response('msg.html', {'messages': '对不起, 这门课的选课人数已经超过限制, 请您选修其他课程'})
         else:
             course.course_choose.add(student)
             course.save()
@@ -217,7 +224,7 @@ def course_delete(request, id):
             messages.error(request, '您未选择学习此课程')
             return render_to_response('msg.html', {'messages': '对不起,您未选择学习此课程!'})
         elif course_now_num >= course_max_num:
-            return render_to_response('msg.html', {'messages': '对不起, 已满足开班人数的课程, 不能推选'})
+            return render_to_response('msg.html', {'messages': '对不起, 当前已满足开班人数的课程, 不能推选'})
         elif course_now_num >= course_min_num:
             return render_to_response('msg.html', {'messages': '对不起, 当前课程已经满足开课的最小人数, 无法删除'})
 
