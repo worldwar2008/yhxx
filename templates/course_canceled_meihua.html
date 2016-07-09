@@ -56,47 +56,47 @@
 <div class="main_btm">
     <div class="wrap">
         <div class="main">
-            <div class="content">
-                <h2>选课结果</h2>
-
-                <h3>未能开课的列表</h3>
-
-                <p><a href="details.html"><img src="../../static/images/staff1.jpg"></a>列表如下:</p>
-
-
-                <div id="stylized" class="myform">
-
-
-                    </br>
-                    <div ALIGN="CENTER">
-
-                        <table VALIGN="TOP">
-                            <tr ALIGN="LEFT">
+{#            <div class="content">#}
+{#                <h2>选课结果</h2>#}
+{##}
+{#                <h3>未能开课的列表</h3>#}
+{##}
+{#                <p><a href="details.html"><img src="../../static/images/staff1.jpg"></a>列表如下:</p>#}
+{##}
+{##}
+{#                <div id="stylized" class="myform">#}
+{##}
+{##}
+{#                    </br>#}
+{#                    <div ALIGN="CENTER">#}
+{##}
+{#                        <table VALIGN="TOP">#}
+{#                            <tr ALIGN="LEFT">#}
                                 {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
-                                <td WIDTH=300 HEIGHT=40>课程名</td>
+{#                                <td WIDTH=300 HEIGHT=40>课程名</td>#}
                                 {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
                                 {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
-                                <td WIDTH=300 HEIGHT=40>上课时间</td>
-                                <td WIDTH=300 HEIGHT=40>取消原因</td>
-
-
-                            </tr>
-                            {% for c in insuffStu %}
-                                <tr ALIGN="LEFT">
-                                    <td WIDTH=300 HEIGHT=40>{{ c.course_name }}</td>
-                                    <td WIDTH=300 HEIGHT=40>{{ c.course_week }}</td>
-                                    <td WIDTH=300 HEIGHT=40>开课人数不足</td>
-
-                                </tr>
-
-                            {% endfor %}
-
-                        </table>
-                    </div>
-                </div>
-
-                <div class="clear"></div>
-            </div>
+{#                                <td WIDTH=300 HEIGHT=40>上课时间</td>#}
+{#                                <td WIDTH=300 HEIGHT=40>取消原因</td>#}
+{##}
+{##}
+{#                            </tr>#}
+{#                            {% for c in insuffStu %}#}
+{#                                <tr ALIGN="LEFT">#}
+{#                                    <td WIDTH=300 HEIGHT=40>{{ c.course_name }}</td>#}
+{#                                    <td WIDTH=300 HEIGHT=40>{{ c.course_week }}</td>#}
+{#                                    <td WIDTH=300 HEIGHT=40>开课人数不足</td>#}
+{##}
+{#                                </tr>#}
+{##}
+{#                            {% endfor %}#}
+{##}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <div class="clear"></div>#}
+{#            </div>#}
             <div class="content">
                 <h3>满足开课条件的课程列表</h3>
 
@@ -119,16 +119,16 @@
 
 
                             </tr>
-{#                            {% for c in above_min_num_classes %}#}
-{#                                <tr ALIGN="LEFT">#}
-{#                                    <td WIDTH=300 HEIGHT=40>{{ c.course_name }}</td>#}
-{#                                    <td WIDTH=300 HEIGHT=40>{{ c.course_week }}</td>#}
-{#                                    <td WIDTH=300 HEIGHT=40>{{ c.course_choose.count }}</td>#}
-{#                                <td WIDTH=300 HEIGHT=40>{{ c.course_max_num }}</td>#}
-{##}
-{#                                </tr>#}
-{##}
-{#                            {% endfor %}#}
+                            {% for c in above_min_num_classes %}
+                                <tr ALIGN="LEFT">
+                                    <td WIDTH=300 HEIGHT=40>{{ c.course_name }}</td>
+                                    <td WIDTH=300 HEIGHT=40>{{ c.course_week }}</td>
+                                    <td WIDTH=300 HEIGHT=40>{{ c.course_choose.count }}</td>
+                                <td WIDTH=300 HEIGHT=40>{{ c.course_min_num }}</td>
+
+                                </tr>
+
+                            {% endfor %}
 
                         </table>
                     </div>
