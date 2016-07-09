@@ -22,16 +22,21 @@ def login(request):
         else:
             # 当前是教师
             return HttpResponseRedirect('/indexteacher', content_type=RequestContext(request))
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
-    user = auth.authenticate(username=username, password=password)
-    if user is not None and user.is_active:
-        auth.login(request, user)
-        if Student.objects.filter(userid=request.user.id):
-            return HttpResponseRedirect('/index/show', content_type=RequestContext(request))
+
+    if request.method == "POST":
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = auth.authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            auth.login(request, user)
+            if Student.objects.filter(userid=request.user.id):
+                return HttpResponseRedirect('/index/show', content_type=RequestContext(request))
+            else:
+                return HttpResponseRedirect('/indexteacher', content_type=RequestContext(request))
         else:
-            return HttpResponseRedirect('/indexteacher', content_type=RequestContext(request))
+            return render_to_response('login-pwd-error.html', context_instance=RequestContext(request))
     else:
+
         return render_to_response('login.html', context_instance=RequestContext(request))
 
 
