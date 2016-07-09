@@ -35,6 +35,8 @@ def login(request):
         return render_to_response('login.html', context_instance=RequestContext(request))
 
 
+
+
 def indexstudent(request):
     return render(request, 'indexstudent.html')
 
