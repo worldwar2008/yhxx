@@ -113,6 +113,7 @@
                                 <td WIDTH=300 HEIGHT=40>课程名</td>
                                 {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
                                 {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
+                                <td WIDTH=300 HEIGHT=40>年级</td>
                                 <td WIDTH=300 HEIGHT=40>上课时间</td>
                                 <td WIDTH=300 HEIGHT=40>已选人数</td>
                                 <td WIDTH=300 HEIGHT=40>最少人数</td>
@@ -122,6 +123,7 @@
                             {% for c in above_min_num_classes %}
                                 <tr ALIGN="LEFT">
                                     <td WIDTH=300 HEIGHT=40>{{ c.course_name }}</td>
+                                    <td WIDTH=300 HEIGHT=40>{{ c.course_grade }}年级</td>
                                     <td WIDTH=300 HEIGHT=40>{{ c.course_week }}</td>
                                     <td WIDTH=300 HEIGHT=40>{{ c.course_choose.count }}</td>
                                 <td WIDTH=300 HEIGHT=40>{{ c.course_min_num }}</td>
