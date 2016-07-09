@@ -140,9 +140,17 @@ def course_add(request, id):
             if now_time < ts_s:
                 return render_to_response('msg.html', {'messages': '对不起, 特色选课还没开始'})
 
+        if course.course_type == u"特色":
+            if now_time > ts_e:
+                return render_to_response('msg.html', {'messages': '对不起, 特色选课已经结束'})
+
         if course.course_type == u"标准":
             if now_time < bz_s:
                 return render_to_response('msg.html', {'messages': '对不起, 标准选课还没开始'})
+
+        if course.course_type == u"标准":
+            if now_time > bz_e:
+                return render_to_response('msg.html', {'messages': '对不起, 标准选课已经结束'})
 
         # course max num limit
 
