@@ -80,7 +80,7 @@ def course_add(request, id):
     dir = '/index/show'
 
     gd_st = "2016-07-08 15:00:00"
-    gd_et = "2016-07-09 09:30:00"
+    gd_et = "2016-07-10 14:00:00"
 
     ts_st = "2016-07-09 10:00:00"
     ts_et = "2016-07-10 14:00:00"
@@ -226,7 +226,7 @@ def course_delete(request, id):
             messages.error(request, '您未选择学习此课程')
             return render_to_response('msg.html', {'messages': '对不起,您未选择学习此课程!'})
         elif course_now_num >= course_max_num:
-            return render_to_response('msg.html', {'messages': '对不起, 当前已满足开班人数的课程, 不能推选'})
+            return render_to_response('msg.html', {'messages': '对不起, 当前已满足开班人数的课程, 不能退选'})
         elif course_now_num >= course_min_num:
             return render_to_response('msg.html', {'messages': '对不起, 当前课程已经满足开课的最小人数, 无法删除'})
         elif course.course_type[0] == u"高":
