@@ -60,6 +60,7 @@
             <div br class="about-us">
                 <div class="about-header">
                     <h3 ALIGN="CENTER">课程总览</h3>
+                    <p align="center"> 温馨提示: 高端课程还可以继续选哦!</p>
 
                     <div class="clear"></div>
                 </div>
@@ -75,6 +76,7 @@
                             <th ALIGN="LEFT" WIDTH=200>课程费用</th>
                             <th ALIGN="LEFT" WIDTH=200>已选人数</th>
                             <th ALIGN="LEFT" WIDTH=200>开班人数</th>
+                            <th ALIGN="LEFT" WIDTH=200>最高人数</th>
 
 
 
@@ -90,6 +92,7 @@
                                 <td WIDTH=200>{{ classes.course_price }}/学期  </td>
                                 <td WIDTH=200>{{ classes.course_choose.count }}   </td>
                                 <td WIDTH=200>{{ classes.course_min_num }}   </td>
+                                <td WIDTH=200>{{ classes.course_max_num }}   </td>
 
 
                             </tr>
@@ -105,6 +108,7 @@
                                 <td WIDTH=200>{{ classes.course_price }}/学期   </td>
                                 <td WIDTH=200>{{ classes.course_choose.count }}   </td>
                                 <td WIDTH=200>{{ classes.course_min_num }}   </td>
+                                <td WIDTH=200>{{ classes.course_max_num }}   </td>
 
                             </tr>
                         {% endfor %}
