@@ -61,7 +61,7 @@ def mooc_list(request, course_time):
 
         return render_to_response('mooc_list.html', {'ml': ml})
     else:
-        return render_to_response('mooc_list.html', {'ml': ml, 'long_ml':long_ml})
+        return render_to_response('mooc_list.html', {'ml': ml, 'long_ml': long_ml})
 
 
 @login_required
@@ -83,9 +83,9 @@ def course_add(request, id):
     gd_et = "2016-07-09 09:30:00"
 
     ts_st = "2016-07-09 10:00:00"
-    ts_et = "2016-07-09 20:00:00"
+    ts_et = "2016-07-10 14:00:00"
 
-    bz_st = "2016-07-11 10:00:00"
+    bz_st = "2016-07-10 19:00:00"
     bz_et = "2016-07-11 20:00:00"
 
     if len(student) != 0:
@@ -174,9 +174,9 @@ def course_delete(request, id):
     gd_et = "2016-07-09 09:30:00"
 
     ts_st = "2016-07-09 10:00:00"
-    ts_et = "2016-07-09 20:00:00"
+    ts_et = "2016-07-10 14:00:00"
 
-    bz_st = "2016-07-11 10:00:00"
+    bz_st = "2016-07-10 19:00:00"
     bz_et = "2016-07-11 20:00:00"
 
     if len(student) != 0:
