@@ -74,6 +74,7 @@
                             <th ALIGN="LEFT" WIDTH=200>上课时间</th>
                             <th ALIGN="LEFT" WIDTH=200>课程费用</th>
                             <th ALIGN="LEFT" WIDTH=200>已选人数</th>
+                            <th ALIGN="LEFT" WIDTH=200>开班人数</th>
 
 
 
@@ -88,6 +89,7 @@
                                 <td WIDTH=200>{{ classes.course_week }}   </td>
                                 <td WIDTH=200>{{ classes.course_price }}/学期  </td>
                                 <td WIDTH=200>{{ classes.course_choose.count }}   </td>
+                                <td WIDTH=200>{{ classes.course_min_num }}   </td>
 
 
                             </tr>
@@ -102,6 +104,7 @@
                                 <td WIDTH=200>{{ classes.course_week }}   </td>
                                 <td WIDTH=200>{{ classes.course_price }}/学期   </td>
                                 <td WIDTH=200>{{ classes.course_choose.count }}   </td>
+                                <td WIDTH=200>{{ classes.course_min_num }}   </td>
 
                             </tr>
                         {% endfor %}
