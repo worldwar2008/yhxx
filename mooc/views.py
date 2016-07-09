@@ -98,9 +98,9 @@ def course_add(request, id):
 
         verify_tese_class_num = Course.objects.filter(course_type=u"特色", course_choose=student).count()
 
-
-        if verify_tese_class_num >= 3:
-            return render_to_response('msg.html', {'messages': '对不起, 您选择的特色课程数目已经超过3个, 不能再多选'})
+        if course.course_type[0] == u"特":
+            if verify_tese_class_num >= 3:
+                return render_to_response('msg.html', {'messages': '对不起, 您选择的特色课程数目已经超过3个, 不能再多选'})
 
 
 
