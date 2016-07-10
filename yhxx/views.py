@@ -11,6 +11,11 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import resolve_url
 from django.template.response import TemplateResponse
 from django.contrib.auth import update_session_auth_hash
+import logging
+
+
+# create logger
+logger=logging.getLogger("blog.views")
 
 # Create your views here.
 def prepare(request):
@@ -29,9 +34,11 @@ def login(request):
     if request.method == "POST":
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        logger.info(u"用户:"+username+u"试图登陆系统")
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             auth.login(request, user)
+            logger.info(u"用户:"+username+u"成功登陆系统")
             if Student.objects.filter(userid=request.user.id):
                 return HttpResponseRedirect('/index/show', content_type=RequestContext(request))
             else:
