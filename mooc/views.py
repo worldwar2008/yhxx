@@ -8,10 +8,12 @@ from forms import *
 from django.forms.formsets import formset_factory
 from django.contrib.auth.models import User
 from datetime import datetime
+import logging
 
 
 # Create your views here.
 
+logger = logging.getLogger("blog.views")
 
 @login_required
 def mooc_list(request, course_time):
@@ -169,6 +171,7 @@ def course_add(request, id):
             course.course_choose.add(student)
             course.save()
             messages.success(request, "恭喜你,你已选课成功")
+            logger.info(student.name+","+student.name_zh+","+u"选课成功:"+course.course_name+","+str(course.id))
             return render_to_response('msg.html', {'messages': "恭喜你,你已选课成功"})
 
     else:
@@ -242,6 +245,8 @@ def course_delete(request, id):
             course.course_choose.remove(student)
             course.save()
             messages.success(request, "你已经成功删除此课程")
+            logger.info(student.name+","+student.name_zh+","+u"删除课程成功:"+course.course_name+","+str(course.id))
+
             return render_to_response('msg.html', {'messages': "你已经成功删除此课程!"})
 
 
