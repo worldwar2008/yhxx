@@ -164,7 +164,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'weblog/script.log',
-            'maxBytes': 1024 * 1024 * 5,
+            'maxBytes': 1024 * 1024 * 50,
             'backupCount': 5,
             'formatter': 'standard',
         }
@@ -187,7 +187,7 @@ LOGGING = {
         },
         'blog.views': {
             'handlers': ['default', 'error'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True
         },
     }
