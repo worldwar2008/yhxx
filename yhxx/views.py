@@ -3,11 +3,14 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib import auth
 from django.template import RequestContext
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from django.contrib import messages
 from mooc.models import *
 from django.contrib.auth.decorators import login_required
-
+from django.core.urlresolvers import reverse
+from django.shortcuts import resolve_url
+from django.template.response import TemplateResponse
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 def prepare(request):
@@ -38,8 +41,6 @@ def login(request):
     else:
 
         return render_to_response('login.html', context_instance=RequestContext(request))
-
-
 
 
 def indexstudent(request):
@@ -85,6 +86,54 @@ def register(request):
         form = UserCreationForm()
     return render_to_response('register.html', locals(), context_instance=RequestContext(request))
 
+
+@login_required
+def change_pwd(request, username,
+                    template_name='change_pwd.html',
+                    post_change_redirect=None,
+                    password_change_form=PasswordChangeForm,
+                    current_app=None, extra_context=None):
+
+
+    if request.method == "POST":
+        form = password_change_form(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            # Updating the password logs out all other sessions for the user
+            # except the current one if
+            # django.contrib.auth.middleware.SessionAuthenticationMiddleware
+            # is enabled.
+            update_session_auth_hash(request, form.user)
+            return HttpResponseRedirect('/accounts/change_pwd_done/')
+    else:
+        form = password_change_form(user=request.user)
+    context = {
+        'form': form,
+        'title': 'Password change',
+    }
+    if extra_context is not None:
+        context.update(extra_context)
+
+    if current_app is not None:
+        request.current_app = current_app
+
+    return TemplateResponse(request, template_name, context)
+
+@login_required
+def change_pwd_done(request, username='',
+                    template_name='pwd_change_done.html',
+                    current_app=None, extra_context=None):
+
+    context = {
+        'title': 'Password change successful',
+    }
+    if extra_context is not None:
+        context.update(extra_context)
+
+    if current_app is not None:
+        request.current_app = current_app
+
+    return TemplateResponse(request, template_name, context)
 
 def course_canceled(request):
     # 主要是需要筛选掉选课人数不足的学生,这些学生的课程自动释放;

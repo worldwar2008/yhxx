@@ -17,11 +17,16 @@ from django.conf.urls import include, url
 from django.contrib import admin
 import mooc.views
 from views import *
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    # url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^indexstudent/$', indexstudent, name='indexstudent'),
     url(r'^accounts/register/$', register, name='register'),
+    url(r'^accounts/change_pwd/(?P<username>\w+)/$', change_pwd, name='change_pwd'),
+    url(r'^accounts/change_pwd_done/$', change_pwd_done, name='change_pwd'),
+
     url(r'^accounts/schedule/$', schedule, name='schedule'),
     url(r'^accounts/grade/$', grade, name='grade'),
     url(r'^accounts/choose/$', choose, name='choose'),
