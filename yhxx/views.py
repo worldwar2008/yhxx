@@ -110,6 +110,7 @@ def change_pwd(request, username,
             # except the current one if
             # django.contrib.auth.middleware.SessionAuthenticationMiddleware
             # is enabled.
+            logger.info(username+u"密码修改成功")
             update_session_auth_hash(request, form.user)
             return HttpResponseRedirect('/accounts/change_pwd_done/')
     else:
