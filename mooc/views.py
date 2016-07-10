@@ -80,10 +80,10 @@ def course_add(request, id):
     dir = '/index/show'
 
     gd_st = "2016-07-08 15:00:00"
-    gd_et = "2016-07-10 14:00:00"
+    gd_et = "2016-07-10 19:00:00"
 
     ts_st = "2016-07-09 10:00:00"
-    ts_et = "2016-07-10 14:00:00"
+    ts_et = "2016-07-10 19:00:00"
 
     bz_st = "2016-07-10 19:00:00"
     bz_et = "2016-07-11 20:00:00"
@@ -464,7 +464,7 @@ def show_my_course(request):
 
 
         return render(request, 'mooc_select_show.html',
-                      {'my_course': my_course, 'sumPrice': sumPrice, 'selected_course_names': selected_course_weeks,
+                      {'user':request.user,'my_course': my_course, 'sumPrice': sumPrice, 'selected_course_names': selected_course_weeks,
                        'student_name':student_name, 'formated_course_56': formated_course_56,
                        'formated_course_78': formated_course_78, 'student_grade':int(student.grade[0])+1})
     else:
