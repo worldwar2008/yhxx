@@ -181,7 +181,7 @@ def course_need_modify(request):
     #noteach = Course.objects.filter(course_teach__isnull=True)
     allCourse = Course.objects.all().order_by('course_type')
     tech = Teacher.objects.filter(name=request.user)
-    tech_grade = str(int(tech[0].department)-1)+u'年级'
+    tech_grade = str(int(tech[0].department)-1)+u"年级"
     allStudent = Student.objects.filter(grade=tech_grade)
 
     student_below_5 = []
