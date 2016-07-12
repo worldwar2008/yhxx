@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+<h1 align="center" >选课表</h1>
+<br>
+<br>
+<br>
+<div ALIGN="CENTER">
+
+    <table VALIGN="TOP">
+        <tr ALIGN="LEFT">
+            {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
+            <td WIDTH=300 HEIGHT=40>上课时间</td>
+            {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
+            {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
+            <td WIDTH=300 HEIGHT=40>周一</td>
+            <td WIDTH=250 HEIGHT=40>周二</td>
+            <td WIDTH=250 HEIGHT=40>周三</td>
+            <td WIDTH=250 HEIGHT=40>周四</td>
+            <td WIDTH=250 HEIGHT=40>周五</td>
+        </tr>
+
+        {#{{ my_course }}#}
+
+        {#                        {% for mc in my_course %}#}
+        {#                            <tr ALIGN="LEFT">#}
+        {#                                <td HEIGHT=40 WIDTH=200>{{ mc.course_name }}</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>{{ mc.course_week }}</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>{{ mc.course_grade}}</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>{{ mc.course_year}}</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+        {#                                #}
+        {#                            </tr>#}
+        {#                        {% endfor %}#}
+        <tr ALIGN="LEFT">
+            {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
+            <td WIDTH=300 HEIGHT=50>下午(5-6节)</td>
+            {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
+            {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
+
+
+            <td WIDTH=300 HEIGHT=50><a
+                    href="{% url 'show_stu_mooc_list' course_time=156 stu_user_id=stu_user_id %}">{{ formated_course_56.pop }}</a>
+            </td>
+            {% if student_grade == 3 %}
+                <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
+            {% elif student_grade == 5 %}
+
+                <td WIDTH=300 HEIGHT=50><a
+                        href="{% url 'show_stu_mooc_list' course_time=256 stu_user_id=stu_user_id %}">{{ formated_course_56.pop }}</a>
+                </td>
+            {% endif %}
+
+            {% if student_grade == 3 %}
+                <td WIDTH=300 HEIGHT=50><a
+                        href="{% url 'show_stu_mooc_list' course_time=356 stu_user_id=stu_user_id %}">{{ formated_course_56.pop }}</a>
+                </td>
+            {% elif student_grade == 5 %}
+                <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
+            {% endif %}
+
+            <td WIDTH=300 HEIGHT=50><a
+                    href="{% url 'show_stu_mooc_list' course_time=456 stu_user_id=stu_user_id %}">{{ formated_course_56.pop }}</a>
+            </td>
+            <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
+
+
+        </tr>
+
+        <tr ALIGN="LEFT">
+            {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
+            <td WIDTH=300 HEIGHT=40>下午(7-8节)</td>
+
+            <td WIDTH=300 HEIGHT=50><a
+                    href="{% url 'show_stu_mooc_list' course_time=178 stu_user_id=stu_user_id %}">{{ formated_course_78.pop }}</a>
+            </td>
+            {% if student_grade == 3 %}
+                <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+            {% elif student_grade == 5 %}
+
+                <td WIDTH=300 HEIGHT=50><a
+                        href="{% url 'show_stu_mooc_list' course_time=278 stu_user_id=stu_user_id %}">{{ formated_course_78.pop }}</a>
+                </td>
+            {% endif %}
+
+            {% if student_grade == 3 %}
+                <td WIDTH=300 HEIGHT=50><a
+                        href="{% url 'show_stu_mooc_list' course_time=378 stu_user_id=stu_user_id %}">{{ formated_course_78.pop }}</a>
+                </td>
+            {% elif student_grade == 5 %}
+                <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+            {% endif %}
+
+            <td WIDTH=300 HEIGHT=50><a
+                    href="{% url 'show_stu_mooc_list' course_time=478 stu_user_id=stu_user_id %}">{{ formated_course_78.pop }}</a>
+            </td>
+            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+
+
+        </tr>
+
+    </table>
+
+    <div class="clear"></div>
+    <div class="spacer"></div>
+
+</div>
+</body>
+</html>

@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^indexstudent$', indexstudent, name='indexstudent'),
     url(r'^indexteacher$', indexteacher, name='indexteacher'),
     url(r'^course_canceled$', course_canceled, name='course_canceled'),
+    url(r'^course_need_modify$', course_need_modify, name='course_modify'),
     url(r'^show_scores$', mooc.views.show_scores, name='show_scores'),
     url(r'^set_scores/(?P<id>\d+)$', mooc.views.set_scores, name='set_scores'),
 ]

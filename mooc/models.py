@@ -28,6 +28,15 @@ class Student(models.Model):
         return self.name
 
 
+class TechChoose4Stu(models.Model):
+    tech_userid = models.IntegerField(null=False)
+    stu_userid = models.IntegerField(null=False)
+    course_id = models.IntegerField(null=False)
+
+    def __unicode__(self):
+        return self.name
+
+
 class StudentAdmin(admin.ModelAdmin):
     list_display = ['name']
 

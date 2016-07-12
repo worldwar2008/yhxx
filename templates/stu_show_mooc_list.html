@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Course</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+<div class="about-header">
+                    <h3 ALIGN="CENTER">课程总览</h3>
+                    <p align="center"> 温馨提示: 高端课程还可以继续选哦!</p>
+
+                    <div class="clear"></div>
+                </div>
+                </br>
+                </br>
+                <div class="about-info" ALIGN="CENTER">
+                    <table>
+                        <tr VALIGN="TOP">
+                            <th ALIGN="LEFT" HEIGHT=30>课程ID</th>
+                            <th ALIGN="LEFT" WIDTH=200>课程名称</th>
+                            <th ALIGN="LEFT" WIDTH=200>课程类型</th>
+                            <th ALIGN="LEFT" WIDTH=200>上课时间</th>
+                            <th ALIGN="LEFT" WIDTH=200>课程费用</th>
+                            <th ALIGN="LEFT" WIDTH=200>已选人数</th>
+                            <th ALIGN="LEFT" WIDTH=200>开班人数</th>
+                            <th ALIGN="LEFT" WIDTH=200>最高人数</th>
+
+
+
+                        </tr>
+
+                        {% for classes in ml %}
+                            <tr>
+                                <td WIDTH=200> {{ classes.id }} </td>
+                                <td WIDTH=200><a
+                                        href="{% url 'show_stu_mooc_detail' id=classes.id stu_user_id=stu_user_id %}">{{ classes.course_name }}</a></td>
+                                <td WIDTH=200>{{ classes.course_type }}   </td>
+                                <td WIDTH=200>{{ classes.course_week }}   </td>
+                                <td WIDTH=200>{{ classes.course_price }}/学期  </td>
+                                <td WIDTH=200>{{ classes.course_choose.count }}   </td>
+                                <td WIDTH=200>{{ classes.course_min_num }}   </td>
+                                <td WIDTH=200>{{ classes.course_max_num }}   </td>
+
+
+                            </tr>
+                        {% endfor %}
+
+                    {% for classes in long_ml %}
+                            <tr>
+                                <td WIDTH=200> {{ classes.id }} </td>
+                                <td WIDTH=200><a
+                                        href="{% url 'show_stu_mooc_detail' id=classes.id stu_user_id=stu_user_id %}">{{ classes.course_name }}</a></td>
+                                <td WIDTH=200>{{ classes.course_type }}   </td>
+                                <td WIDTH=200>{{ classes.course_week }}   </td>
+                                <td WIDTH=200>{{ classes.course_price }}/学期   </td>
+                                <td WIDTH=200>{{ classes.course_choose.count }}   </td>
+                                <td WIDTH=200>{{ classes.course_min_num }}   </td>
+                                <td WIDTH=200>{{ classes.course_max_num }}   </td>
+
+                            </tr>
+                        {% endfor %}
+
+
+                    </table>
+                </div>
+
+</body>
+</html>

@@ -20,8 +20,14 @@ from django.conf.urls import include, url
 from views import *
 urlpatterns = [
     url(r'^$', mooc_list, name='mooc_list'),
+    url(r'^(?P<stu_user_id>\d+)/show_stu_course', show_stu_course, name='show_stu_courses'),
+    url(r'^(?P<course_time>\d+)/(?P<stu_user_id>\d+)/show_stu_mooc_list', show_stu_mooc_list, name='show_stu_mooc_list'),
+    url(r'^(?P<id>\d+)/(?P<stu_user_id>\d+)/show_stu_mooc_detail$', show_stu_mooc_detail, name='show_stu_mooc_detail'),
+    url(r'^(?P<id>\d+)/(?P<stu_user_id>\d+)/show_stu_add$', show_stu_course_add, name='show_stu_course_add'),
+    url(r'^(?P<id>\d+)/(?P<stu_user_id>\d+)/show_stu_delete$', show_stu_course_delete, name='show_stu_course_delete'),
 
-    url(r'^(?P<course_time>\d+)$', mooc_list, name='mooc_list'),
+
+    url(r'^(?P<course_time>\d+)/mooc_list$', mooc_list, name='mooc_list'),
     url(r'^(?P<id>\d+)/$', mooc_detail, name='mooc_detail'),
     url(r'^(?P<id>\d+)/add$', course_add, name='course_add'),
     url(r'^(?P<id>\d+)/delete$', course_delete, name='course_delete'),
