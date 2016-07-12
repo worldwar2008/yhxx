@@ -17,11 +17,11 @@
     <p> 3.不能超过最大开班人数</p>
 
 
-    {% if messages %}
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
-    {% endif %}
+{#    {% if messages %}#}
+{#    {% for message in messages %}#}
+{#    {{ message }}#}
+{#    {% endfor %}#}
+{#    {% endif %}#}
     <a href="{% url 'course_modify'%}">查看你所在的班级, 你需要为其修改课程的列表</a>
     <br>
     <a href="{% url 'logout' %}">登出</a>
