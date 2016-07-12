@@ -278,7 +278,7 @@ def show_stu_course_add(request, id, stu_user_id):
 
         if verify_same_course:
             messages.error(request, '您已选择学习此类课程, 每种课程一周只能选择一次课')
-            return render_to_response('msg.html', {'messages': '对不起, 您已选择学习此类课程, 每种课程一周只能选择一次课'})
+            return render_to_response('tech_msg.html', {'messages': '对不起, 您已选择学习此类课程, 每种课程一周只能选择一次课'})
         elif verify_same_time:
             messages.error(request, '您已选择学习此时间段的课程, 请重新选择')
             return render_to_response('tech_msg.html', {'messages': '对不起, 您已选择学习此时间段的课程, 请重新选择'})
