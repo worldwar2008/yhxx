@@ -441,7 +441,7 @@ def show_stu_course_delete(request, id, stu_user_id):
             #print "userid_id_id",tech[0].userid_id
             record = TechChoose4Stu.objects.get(stu_userid=stu_user_id, tech_userid=tech[0].userid_id, course_id=course.id)
 
-            if record.count() > 0:
+            if record is not None:
                 record.delete()
                 course.course_choose.remove(student)
                 course.save()
