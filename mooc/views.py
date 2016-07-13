@@ -430,6 +430,12 @@ def show_stu_course_delete(request, id, stu_user_id):
         if not verify:
             messages.error(request, '您未选择学习此课程')
             return render_to_response('tech_msg.html', {'messages': '对不起,您未选择学习此课程!'})
+        elif request.user == 't1-super':
+            course.course_choose.remove(student)
+            course.save()
+            logger.info(
+                    request.user + "," + student.name_zh + "," + u"删除课程成功:" + course.course_name + "," + str(course.id))
+            return render_to_response('tech_msg.html', {'messages': "你已经成功删除此课程!"})
         elif course_now_num >= course_max_num:
             return render_to_response('tech_msg.html', {'messages': '对不起, 当前已满足开班人数的课程, 不能退选'})
         elif course_now_num >= course_min_num:
