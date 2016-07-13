@@ -431,7 +431,7 @@ def show_stu_course_delete(request, id, stu_user_id):
         if not verify:
             messages.error(request, '您未选择学习此课程')
             return render_to_response('tech_msg.html', {'messages': '对不起,您未选择学习此课程!'})
-        elif request.user.username == u't1-super':
+        elif request.user.username == u't1-super' or request.user.username == u't2-super':
             course.course_choose.remove(student)
             course.save()
             logger.info(
