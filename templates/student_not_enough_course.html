@@ -49,6 +49,46 @@
         </div>
     </div>
 
+<h3>年级所有学生列表</h3>
+
+    {#                <p><a href="details.html"><img src="../../static/images/staff1.jpg"></a>列表如下:</p>#}
+{#    <p><a><img src="../../static/images/staff1.jpg"></a></p>#}
+
+    <div id="stylized" class="myform">
+
+
+        </br>
+        <div ALIGN="CENTER">
+
+            <table VALIGN="TOP">
+                <tr ALIGN="LEFT">
+                    {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
+                    <td WIDTH=300 HEIGHT=40>学生姓名</td>
+                    {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
+                    {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
+                    <td WIDTH=300 HEIGHT=40>年级</td>
+                    <td WIDTH=300 HEIGHT=40>班级</td>
+                    <td WIDTH=300 HEIGHT=40>已选的课程数目</td>
+
+
+                </tr>
+                {% for s in allStudent%}
+                    <tr ALIGN="LEFT">
+                        <td WIDTH=300 HEIGHT=40><a
+                                href="{% url 'show_stu_courses' stu_user_id=s.userid_id %}">{{ s.name_zh }}</a></td>
+                        <td WIDTH=300 HEIGHT=40>{{ s.grade }}</td>
+                        <td WIDTH=300 HEIGHT=40>{{ s.class_name }}</td>
+                        <td WIDTH=300 HEIGHT=40>{{ s.course_set.count }}</td>
+
+
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
     <div class="clear"></div>
 </div>
 </body>

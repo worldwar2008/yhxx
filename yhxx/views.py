@@ -207,4 +207,4 @@ def course_need_modify(request):
     #print "没有完全选课成功的人数",len(student_below_5)
 
     return render(request, 'student_not_enough_course.html',
-                  {'student_below_5': student_below_5})
+                  {'student_below_5': student_below_5,'all_student':allStudent})
