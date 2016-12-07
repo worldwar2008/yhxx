@@ -572,7 +572,7 @@ def show_my_course(request):
 
             elif u"周四(5-8节)" in selected_course_weeks:
                 for index, item in enumerate(selected_course_weeks):
-                    if u"周四(7-8节)" in item:
+                    if u"周四(5-8节)" in item:
                         formated_course_78.append(selected_course_names[index])
             else:
                 formated_course_78.append("待选")
