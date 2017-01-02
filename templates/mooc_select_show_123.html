@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<style type="text/css">
+    body {
+        font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+        font-size: 15px;
+    }
+
+    .tou {
+        background: url("../../static/images/tou.png") no-repeat;
+        width: 97px;
+        height: 92px;
+        position: absolute;
+        top: -85px;
+        left: 320px;
+    }
+
+    .initial_left_hand {
+        background: url("../../static/images/hand.png") no-repeat;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: -10px;
+        left: 280px;
+    }
+
+    .initial_right_hand {
+        background: url("../../static/images/hand.png") no-repeat;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: -10px;
+        right: -292px;
+    }
+
+    .left_hand {
+        background: url("../../static/images/left_hand.png") no-repeat;
+        width: 32px;
+        height: 37px;
+        position: absolute;
+        top: -36px;
+        left: 330px;
+    }
+
+    .right_hand {
+        background: url("../../static/images/right_hand.png") no-repeat;
+        width: 32px;
+        height: 37px;
+        position: absolute;
+        top: -36px;
+        right: -244px;
+    }
+
+    .left_handing {
+        background: url("../../static/images/left-handing.png") no-repeat;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: -22px;
+        left: 319px;
+    }
+
+    .right_handinging {
+        background: url("../../static/images/right_handing.png") no-repeat;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: -19px;
+        left: 390px;
+    }
+
+    p, h1, form, button {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .spacer {
+        clear: both;
+        height: 1px;
+    }
+
+    /* ———– My Form ———– */
+    .myform {
+        margin: 0 auto;
+        width: 400px;
+        padding: 20px;
+    }
+
+    /* ———– stylized ———– */
+
+    #stylized {
+        border: solid 2px #b7ddf2;
+        background: #ebf4fb;
+    }
+
+    #stylized h1 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    #stylized p {
+        font-size: 12px;
+        color: #666666;
+        margin-bottom: 20px;
+        border-bottom: solid 1px #b7ddf2;
+        padding-bottom: 10px;
+    }
+
+    #stylized label {
+        display: block;
+        font-weight: bold;
+        text-align: right;
+        width: 140px;
+        float: left;
+    }
+
+    #stylized .small {
+        color: #666666;
+        display: block;
+        font-size: 11px;
+        font-weight: normal;
+        text-align: right;
+        width: 140px;
+    }
+
+    #stylized input {
+        float: left;
+        font-size: 15px;
+        padding: 4px 2px;
+        border: solid 1px #aacfe4;
+        width: 200px;
+        margin: 2px 0 20px 10px;
+    }
+
+    #stylized .sub {
+        clear: both;
+        margin-left: 150px;
+        width: 120px;
+        height: 32px;
+        line-height: 20px;
+        border: 1px solid #8b9c56;
+        background: url("../images/bt_bg.gif") 0px -64px;
+        text-align: center;
+        color: #336600;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .red {
+        color: #ff0000;
+    }
+
+    .blue {
+        color: #0000FF;
+    }
+    .student_name {
+        text-align: right;
+
+    }
+    .sum_price {
+        text-align: left;
+
+    }
+    .notice {
+        text-align: center;
+    }
+</style>
+
+<body>
+<div class="btm_border">
+    <div class="h_bg">
+        <div class="wrap">
+            <div class="header">
+                <div class="logo">
+                    <h1><a href="{% url 'indexstudent' %}"><img src="../../static/images/log3.jpg" alt=""></a></h1>
+                </div>
+{#                <div class="social-icons">#}
+{#                    <ul>#}
+{#                        <br/>#}
+{#                        <li><a class="facebook" href="#" target="_blank"> </a></li>#}
+{#                        <li><a class="twitter" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="googleplus" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="pinterest" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="dribbble" href="#" target="_blank"></a></li>#}
+{#                        <li><a class="vimeo" href="#" target="_blank"></a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+                <div class="clear"></div>
+            </div>
+            <div class='h_btm'>
+                <div class='cssmenu'>
+                    <ul>
+                        <li class="active"><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
+                        <li><a href="{% url 'indexstudent' %}"><span>选课规则</span></a></li>
+
+{#                        <li><a href="{% url 'mooc_list' %}"><span>选课</span></a></li>#}
+{#                        <li><a href="{% url 'grade' %}"><span>成绩</span></a></li>#}
+{#                        <li class='has-sub'><a href="{% url 'bill' %}"><span>缴费</span></a></li>#}
+                        <li class='has-sub'><a href="{% url 'course_canceled' %}"><span>公告</span></a></li>
+                        <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="text" value="">
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--main-->
+
+<div class="main_btm">
+    <div class="wrap">
+        <div class="main">
+            <div br class="about-us">
+                <div class="about-header">
+                    <h2 class="student_name">你好, {{ student_name }}</h2>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <h2 class="notice"> 通知: 先采纳家长们的意见,  高端课程现在继续可以选, 具体时间请关注通知, 特色课程于7月9日上午10点开始选课
+                        </h2>
+=======
+                    <h2 class="notice"> 通知: 先采纳家长们的意见,  高端课程现在继续可以选, 特色课程于7月9日上午10点开始选课
+=======
+                    <h2 class="notice"> 通知: 现采纳家长们的意见,  高端课程现在继续可以选, 特色课程于7月9日上午10点开始选课
+                        </h2>
+                    <h2 class="notice"> 另外, 请大家参考开班人数，综合考虑
+>>>>>>> 9920f2884b657d29b3b04bd671a8f1a883dbb799
+                        </h2>
+
+>>>>>>> 9683c07b1f1d18cb994976a893faa6493f84e285
+                    <h2 class="sum_price">相关连接:</h2>
+                    <h2 class="sum_price"><a href=" http://www.yhxx.org/a/xuanxiukechengjieshao/2016/0708/310.html">选课规则及说明链接</a></h2>
+                    <h2 class="sum_price"><a href="http://www.yhxx.org/a/xuanxiukechengjieshao/tesekecheng/">特色课程介绍链接</a></h2>
+                    <h2 class="sum_price"><a href="http://www.yhxx.org/a/xuanxiukechengjieshao/gaoduankecheng/">高端课程介绍链接</a></h2>
+                    <br>
+                    <h2 class="sum_price"> 课程总费用: {{ sumPrice }}(元)</h2>
+                    <p>  </p>
+                    <p class=""sum_price> 选择高端课程的用户</p>
+                    <p class="sum_price"> 等高端课程选择结束之后, 请于7月11日上午到学校缴费。</p>
+                    <h3 ALIGN="CENTER">课程表</h3>
+
+                    <div class="clear"></div>
+                </div>
+                </br>
+                </br>
+                </br>
+                </br>
+
+                <DIV style="width: 165px; height: 96px; position: absolute;">
+                    <DIV class="tou"></DIV>
+                    <DIV class="initial_left_hand" id="left_hand"></DIV>
+                    <DIV class="initial_right_hand" id="right_hand"></DIV>
+                </DIV>
+            </DIV>
+            <div id="stylized" class="myform">
+
+                <h1>选修课-课程信息</h1>
+                </br>
+                <div ALIGN="CENTER">
+
+                    <table VALIGN="TOP">
+                        <tr ALIGN="LEFT">
+                            {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
+                            <td WIDTH=300 HEIGHT=40>上课时间</td>
+                            {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
+                            {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
+                            <td WIDTH=300 HEIGHT=40>周一</td>
+                            <td WIDTH=250 HEIGHT=40>周二</td>
+                            <td WIDTH=250 HEIGHT=40>周三</td>
+                            <td WIDTH=250 HEIGHT=40>周四</td>
+                            <td WIDTH=250 HEIGHT=40>周五</td>
+                        </tr>
+
+                        {#{{ my_course }}#}
+
+                        {#                        {% for mc in my_course %}#}
+                        {#                            <tr ALIGN="LEFT">#}
+                        {#                                <td HEIGHT=40 WIDTH=200>{{ mc.course_name }}</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>{{ mc.course_week }}</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>{{ mc.course_grade}}</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>{{ mc.course_year}}</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+                        {#                                <td WIDTH=200 HEIGHT=40>马术</td>#}
+                        {#                                #}
+                        {#                            </tr>#}
+                        {#                        {% endfor %}#}
+                        <tr ALIGN="LEFT">
+                            {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
+                            <td WIDTH=300 HEIGHT=50>下午(5-6节)</td>
+                            {#                            <td WIDTH=200 HEIGHT=40>年级</td>#}
+                            {#                            <td WIDTH=200 HEIGHT=40>学年</td>#}
+
+
+
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=156%}">{{ formated_course_56.pop }}</a></td>
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
+                            {% elif student_grade == 5 %}
+
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=256%}">{{ formated_course_56.pop }}</a></td>
+                            {% endif %}
+
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=356%}">{{ formated_course_56.pop }}</a></td>
+                            {% elif student_grade == 5 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
+                            {% endif %}
+
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=456%}">{{ formated_course_56.pop }}</a></td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_56.pop }}</td>
+
+
+
+
+
+
+
+                        </tr>
+
+                        <tr ALIGN="LEFT">
+                            {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
+                            <td WIDTH=300 HEIGHT=40>下午(7-8节)</td>
+
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=178%}">{{ formated_course_78.pop }}</a></td>
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+                            {% elif student_grade == 5 %}
+
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=278%}">{{ formated_course_78.pop }}</a></td>
+                            {% endif %}
+
+                            {% if student_grade == 3 %}
+                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=378%}">{{ formated_course_78.pop }}</a></td>
+                            {% elif student_grade == 5 %}
+                                <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+                            {% endif %}
+
+                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=478%}">{{ formated_course_78.pop }}</a></td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+
+
+                        </tr>
+
+                    </table>
+
+                    <div class="clear"></div>
+                    <div class="spacer"></div>
+
+                </div>
+                <div class="specials">
+
+                </div>
+
+            </div>
+
+        </div>
+        <!--footer-->
+        <div class="footer-bg">
+            <div class="wrap">
+                <div class="footer">
+                    <div class="box1">
+                        <h4 class="btm">年级概括</h4>
+
+                        <p> 小学1-5年纪的学生,在选修课的选择上可以根据学生自己的兴趣和特点,选择适合自己的课程</p>
+
+                        <p>当遇到问题时，可及时联系网络管理中心，我们会为广大学生朋友们提供力所能及的帮助。</p>
+                    </div>
+                    <div class="box1">
+                        <h4 class="btm">课程种类</h4>
+                        <nav>
+                            <ul>
+                                <p>选修课分为标准，特色，高端三种类型。 </p>
+
+                                <p>每个类别的课程里面会包含不同类型的课程</p>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="box1">
+                        <h4 class="btm">学校信息</h4>
+
+                        <div class="box1_address">
+                            <p>地址：北京市丰台区</p>
+
+                            <p>信息管理：怡海分校信息管理处 </p>
+
+                            <p>技术维护：怡海分校网络中心 </p>
+
+                            <p>管理员信箱：690008262@qq.com</p>
+
+                            <p>管理员QQ：690008262</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!--footer1-->
+        <div class="ftr-bg">
+            <div class="wrap">
+                <div class="footer">
+                    <div class="copy">
+                        <p class="w3-link">&copy; Copyright &copy; 2016.YHXX All rights reserved.</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div style="display:none">
+            <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript'
+                    charset='gb2312'></script>
+        </div>
+</body>
+</html>
