@@ -12,7 +12,8 @@ from django.shortcuts import resolve_url
 from django.template.response import TemplateResponse
 from django.contrib.auth import update_session_auth_hash
 import logging
-
+import xlwt
+import cStringIO
 # create logger
 logger = logging.getLogger("blog.views")
 
@@ -208,3 +209,49 @@ def course_need_modify(request):
 
     return render(request, 'student_not_enough_course.html',
                   {'student_below_5': student_below_5,'all_student':allStudent})
+
+def course_export(request):
+    """
+    导出年级的课程的选课情况
+    :param request:
+    :return:
+    """
+
+    #noteach = Course.objects.filter(course_teach__isnull=True)
+    allCourse = Course.objects.all().order_by('course_type')
+    response = HttpResponse(content_type="text/html")
+    response['Content-Disposition'] = 'attachment;filename=export_course_info.xls'
+    wb = xlwt.Workbook(encoding='utf-8')
+    sheet = wb.add_sheet(u'课程')
+    #1st line   
+    sheet.write(0, 0, 'grade')
+    sheet.write(0, 1, 'name')
+    sheet.write(0, 2, 'price')
+    sheet.write(0, 3, 'year')
+    sheet.write(0, 4, 'type')
+    sheet.write(0, 5, 'week')
+    sheet.write(0, 6, 'name_zh')
+    sheet.write(0, 7, 'class_name')
+    sheet.write(0, 8, 'study_stage')
+    sheet.write(0, 9, 'name')
+
+    row = 1
+    for course in allCourse:
+        row_value = []
+        for cho in course.course_choose.all():
+            row_value.append([course.course_grade,course.course_name,
+                              course.course_price,course.course_year,
+                              course.course_type,course.course_week,
+                              cho.name_zh,cho.class_name,
+                              cho.study_stage,cho.name])
+
+        for row_i in range(len(row_value)):
+            for col_i,col_value in enumerate(row_value[row_i]):
+                sheet.write(row+row_i, col_i, col_value)
+        row=row + len(row_value)
+       
+    output = cStringIO.StringIO()
+    wb.save(output)
+    output.seek(0)
+    response.write(output.getvalue())
+    return response
