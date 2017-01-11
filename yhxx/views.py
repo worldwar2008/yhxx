@@ -28,9 +28,10 @@ def login(request):
         if Student.objects.filter(userid=request.user.id):
             # 当前是学生
             return HttpResponseRedirect('/index/show', content_type=RequestContext(request))
-        else:
+        elif Teacher.objects.filter(userid=request.user.id):
             # 当前是教师
             return HttpResponseRedirect('/indexteacher', content_type=RequestContext(request))
+
 
     if request.method == "POST":
         username = request.POST.get('username', '')
@@ -42,7 +43,7 @@ def login(request):
             logger.info(u"用户:" + username + u"成功登陆系统")
             if Student.objects.filter(userid=request.user.id):
                 return HttpResponseRedirect('/index/show', content_type=RequestContext(request))
-            else:
+            elif Teacher.objects.filter(userid=request.user.id):
                 return HttpResponseRedirect('/indexteacher', content_type=RequestContext(request))
         else:
             return render_to_response('login-pwd-error.html', context_instance=RequestContext(request))

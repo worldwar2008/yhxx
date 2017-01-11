@@ -9,7 +9,7 @@
 
 {% if request.user.is_authenticated %}
     <p>{{ request.user }}  用户, 您已经登录</p>
-    <h1>老师,  您的信息如下: </h1>
+    <h1>老师,  您好: </h1>
     <p>请你在为学生们选课之前的时候,先操作列表中的测试姓名, 简单熟悉一下具体的流程,再为同学们选择课程</p>
     <p>选课的规则:</p>
     <p> 1.不能删除学生们自己选择的课程</p>
@@ -22,13 +22,11 @@
 {#    {{ message }}#}
 {#    {% endfor %}#}
 {#    {% endif %}#}
-    <a href="{% url 'course_modify'%}"> 查看你所在的班级, 你需要为其修改课程的列表 </a>
-    <br>
-    <br>
-    <a href="{% url 'course_export'%}"> 导出相关的数据 </a>
+    <h2>调整选课</h2>
+    <a href="{% url 'course_modify'%}"> (1) 查看你所在的班级, 需要你为其修改课程的列表 </a>
+    <h2>导出报表</h2>
+    <a href="{% url 'course_export'%}"> (1) 导出选课结果数据 </a>
 
-    <br>
-    <br>
 
     <a href="{% url 'logout' %}">登出</a>
 {% else %}
