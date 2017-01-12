@@ -231,12 +231,8 @@
                 <div class="about-header">
                     <h2 class="student_name">你好, {{ student_name }}</h2>
                     <p><a href="/accounts/change_pwd/{{ user }}">密码修改</a></p>
-                    <h2 class="notice"> 通知: 学校的选课调整工作现已经全部结束，请各位家长确认孩子的课表。
+                    <h2 class="notice"> 通知: {{ notice_tongzhi }}
                         </h2>
-
-
-
-
 
                     <h2 class="sum_price">相关连接:</h2>
                     <h2 class="sum_price"><a href=" http://www.yhxx.org/a/xuanxiukechengjieshao/2016/0708/310.html">选课规则及说明链接</a></h2>
@@ -246,8 +242,8 @@
                     <h2 class="sum_price"> 课程总费用: {{ sumPrice }}(元)</h2>
                     <br>
 
-                    <p class="sum_price"> 请选择高端课程的家长周日晚上确认最终费用</p>
-                    <p class="sum_price"> 然后,7月11日（下周一）上午9点到学校交费</p>
+                    <p class="sum_price"> {{ notice_left1 }}</p>
+                    <p class="sum_price"> {{ notice_left2 }}</p>
                     <h3 ALIGN="CENTER">课程表</h3>
 
                     <div class="clear"></div>

@@ -5,4 +5,5 @@ from mooc.models import *
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Teacher, TeacherAdmin)
-admin.site.register(Score, ScoreAdmin)
+#admin.site.register(Score, ScoreAdmin)
+admin.site.register(Notice, NoticeAdmin)

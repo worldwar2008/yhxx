@@ -666,11 +666,18 @@ def show_my_course(request):
         print "formated_course_56", formated_course_56
         print "formated_course_78", formated_course_78
 
+        notice_tongzhi = unicode(Notice.objects.filter(name=u"通知").values("describe")[0]["describe"])
+        notice_left1 = unicode(Notice.objects.filter(name=u"高端课程费用确认").values("describe")[0]["describe"])
+        notice_left2 = unicode(Notice.objects.filter(name=u"课程缴费详情").values("describe")[0]["describe"])
+
         return render(request, 'mooc_select_show.html',
                       {'user': request.user, 'my_course': my_course, 'sumPrice': sumPrice,
                        'selected_course_names': selected_course_weeks,
                        'student_name': student_name, 'formated_course_56': formated_course_56,
-                       'formated_course_78': formated_course_78, 'student_grade': int(student.grade[0]) + 1})
+                       'formated_course_78': formated_course_78, 'student_grade': int(student.grade[0]) + 1,
+                       'notice_tongzhi': notice_tongzhi,
+                       'notice_left1': notice_left1,
+                       'notice_left2': notice_left2})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.all().order_by('id')

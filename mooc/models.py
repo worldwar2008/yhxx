@@ -106,7 +106,7 @@ class ScoreAdmin(admin.ModelAdmin):
     
 
 class Notice(models.Model):
-
+    name = models.CharField(max_length=50, blank=True, null=True)
     position = models.CharField(max_length=50, blank=True, null=True)
     describe = models.CharField(max_length=50, blank=True, null=True)
 
