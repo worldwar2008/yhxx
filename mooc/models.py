@@ -79,6 +79,10 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ['course_name']
 
 
+
+
+
+
 ScoreChoice = (
     ('A', 'A'),
     ('B', 'B'),
@@ -99,3 +103,16 @@ class Score(models.Model):
 
 class ScoreAdmin(admin.ModelAdmin):
     list_display = ['student_id', 'teacher_id', 'course_id', 'value']
+    
+
+class Notice(models.Model):
+
+    position = models.CharField(max_length=50, blank=True, null=True)
+    describe = models.CharField(max_length=50, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
+
+
+class NoticeAdmin(admin.ModelAdmin):
+    list_display = ['name', 'position', 'describe']
