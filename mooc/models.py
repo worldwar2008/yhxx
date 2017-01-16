@@ -38,7 +38,7 @@ class TechChoose4Stu(models.Model):
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['name']
+    list_display = ['name','name_zh','grade','class_name','study_stage']
 
 
 class Teacher(models.Model):
