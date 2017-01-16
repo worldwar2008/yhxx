@@ -14,7 +14,11 @@ class Student(models.Model):
     name_zh = models.CharField(max_length=50)
     userid = models.OneToOneField(User, blank=True, null=True)
     birthdate = models.DateField(blank=True, null=True)
-    sex = models.CharField(max_length=50, blank=True, null=True)
+    gender_choices = (
+        ('man', "男"),
+        ('woman', "女"),
+    )
+    sex = models.CharField(max_length=50, choices=gender_choices, default='man')
     eduNumber = models.IntegerField(blank=True, null=True)
     socialNumber = models.IntegerField(blank=True, null=True)
     status = models.CharField(max_length=50, blank=True, null=True)
@@ -38,7 +42,7 @@ class TechChoose4Stu(models.Model):
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['name','name_zh','grade','class_name','study_stage']
+    list_display = ['name_zh', 'grade', 'class_name', 'study_stage']
 
 
 class Teacher(models.Model):
@@ -64,11 +68,33 @@ class Course(models.Model):
     course_teach = models.ManyToManyField(Teacher, blank=True)
     course_grade = models.CharField(max_length=50, blank=True, null=True)
     course_year = models.CharField(max_length=50, blank=True, null=True)
-    course_week = models.CharField(max_length=50, blank=True, null=True)
+    detail_weekTime_choice = (
+        (u"周一(5-6节)", "周一(5-6节)"),
+        (u"周一(7-8节)", "周一(7-8节)"),
+        (u"周一(5-8节)", "周一(5-8节)"),
+        (u"周二(5-6节)", "周二(5-6节)"),
+        (u"周二(7-8节)", "周二(7-8节)"),
+        (u"周二(5-8节)", "周二(5-8节)"),
+        (u"周三(5-6节)", "周三(5-6节)"),
+        (u"周三(7-8节)", "周三(7-8节)"),
+        (u"周三(5-8节)", "周三(5-8节)"),
+        (u"周四(5-6节)", "周四(5-6节)"),
+        (u"周四(7-8节)", "周四(7-8节)"),
+        (u"周四(5-8节)", "周四(5-8节)"),
+        (u"周五️(5-6节)", "周五️(5-6节)"),
+        (u"周五(7-8节)", "周五(7-8节)"),
+        (u"周五(5-8节)", "周五(5-8节)")
+    )
+    course_week = models.CharField(max_length=50, choices=detail_weekTime_choice, default=u"周一(5-6节)")
     course_time = models.TimeField(blank=True, null=True)
     course_min_num = models.IntegerField(blank=True, null=True)
     course_max_num = models.IntegerField(blank=True, null=True)
-    course_type = models.CharField(max_length=50, blank=True, null=True)
+    type_choice = (
+        (u"高端", "高端"),
+        (u"特色",  "特色"),
+        (u"标准", "标准")
+    )
+    course_type = models.CharField(max_length=50, choices=type_choice, default=u"标准")
     course_price = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
@@ -76,10 +102,7 @@ class Course(models.Model):
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['course_name']
-
-
-
+    list_display = ['course_name', 'course_type', 'course_week', 'course_year', 'course_grade', 'course_price']
 
 
 
