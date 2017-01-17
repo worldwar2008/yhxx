@@ -49,6 +49,8 @@ def mooc_list(request, course_time):
 
     long_ml = Course.objects.filter(course_week=long_tmp_week, course_grade=student_grade).order_by('course_type')
 
+    notice_tishi = unicode(Notice.objects.filter(name=u"选课提示").values("describe")[0]["describe"])
+
     #
     # if len(student) != 0:
     #     student = student[0]
@@ -57,9 +59,9 @@ def mooc_list(request, course_time):
     #     sumPrice = sum([c.course_price for c in my_course])
     if len(long_ml) == 0:
 
-        return render_to_response('mooc_list.html', {'ml': ml})
+        return render_to_response('mooc_list.html', {'ml': ml, 'notice_tishi': notice_tishi})
     else:
-        return render_to_response('mooc_list.html', {'ml': ml, 'long_ml': long_ml})
+        return render_to_response('mooc_list.html', {'ml': ml, 'long_ml': long_ml, 'notice_tishi': notice_tishi})
 
 @login_required
 def show_stu_mooc_list(request, course_time, stu_user_id):
@@ -101,10 +103,12 @@ def show_stu_mooc_list(request, course_time, stu_user_id):
     #     my_course = student.course_set.all().order_by('course_week')
     #     selected_course_weeks = [c.course_week for c in my_course]
     #     sumPrice = sum([c.course_price for c in my_course])
+    notice_tishi = unicode(Notice.objects.filter(name=u"选课提示").values("describe")[0]["describe"])
+
     if len(long_ml) == 0:
-        return render_to_response('stu_show_mooc_list.html', {'ml': ml, 'stu_user_id':stu_user_id})
+        return render_to_response('stu_show_mooc_list.html', {'ml': ml, 'stu_user_id': stu_user_id, "notice_tishi": notice_tishi})
     else:
-        return render_to_response('stu_show_mooc_list.html', {'ml': ml, 'long_ml': long_ml, 'stu_user_id':stu_user_id})
+        return render_to_response('stu_show_mooc_list.html', {'ml': ml, 'long_ml': long_ml, 'stu_user_id':stu_user_id, "notice_tishi": notice_tishi})
 
 
 @login_required
@@ -131,14 +135,22 @@ def course_add(request, id):
     course = Course.objects.get(id=id)
     dir = '/index/show'
 
-    gd_st = "2016-07-08 15:00:00"
-    gd_et = "2016-07-11 11:00:00"
+    # gd_st = "2016-07-08 15:00:00"
+    # gd_et = "2016-07-11 11:00:00"
+    #
+    # ts_st = "2016-07-09 10:00:00"
+    # ts_et = "2016-07-11 11:00:00"
+    #
+    # bz_st = "2016-07-10 21:00:00"
+    # bz_et = "2016-07-11 11:00:00"
 
-    ts_st = "2016-07-09 10:00:00"
-    ts_et = "2016-07-11 11:00:00"
+    gd_st = unicode(Notice.objects.filter(name=u"高端选课开始时间").values("describe")[0]["describe"])
+    gd_et = unicode(Notice.objects.filter(name=u"特色选课结束时间").values("describe")[0]["describe"])
+    ts_st = unicode(Notice.objects.filter(name=u"特色选课开始时间").values("describe")[0]["describe"])
+    ts_et = unicode(Notice.objects.filter(name=u"特色选课结束时间").values("describe")[0]["describe"])
+    bz_st = unicode(Notice.objects.filter(name=u"标准选课开始时间").values("describe")[0]["describe"])
+    bz_et = unicode(Notice.objects.filter(name=u"标准选课结束时间").values("describe")[0]["describe"])
 
-    bz_st = "2016-07-10 21:00:00"
-    bz_et = "2016-07-11 11:00:00"
 
     if len(student) != 0:
         # dir = '/mooc/' + id
@@ -663,13 +675,11 @@ def show_my_course(request):
 
         formated_course_56.reverse()
         formated_course_78.reverse()
-        print "formated_course_56", formated_course_56
-        print "formated_course_78", formated_course_78
 
         notice_tongzhi = unicode(Notice.objects.filter(name=u"通知").values("describe")[0]["describe"])
         notice_left1 = unicode(Notice.objects.filter(name=u"高端课程费用确认").values("describe")[0]["describe"])
         notice_left2 = unicode(Notice.objects.filter(name=u"课程缴费详情").values("describe")[0]["describe"])
-
+        notice_tishi = unicode(Notice.objects.filter(name=u"选课提示").values("describe")[0]["describe"])
         return render(request, 'mooc_select_show.html',
                       {'user': request.user, 'my_course': my_course, 'sumPrice': sumPrice,
                        'selected_course_names': selected_course_weeks,
@@ -677,7 +687,8 @@ def show_my_course(request):
                        'formated_course_78': formated_course_78, 'student_grade': int(student.grade[0]) + 1,
                        'notice_tongzhi': notice_tongzhi,
                        'notice_left1': notice_left1,
-                       'notice_left2': notice_left2})
+                       'notice_left2': notice_left2,
+                       "notice_tishi":notice_tishi})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.all().order_by('id')

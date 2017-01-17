@@ -15,10 +15,10 @@ class Student(models.Model):
     userid = models.OneToOneField(User, blank=True, null=True)
     birthdate = models.DateField(blank=True, null=True)
     gender_choices = (
-        ('man', "男"),
-        ('woman', "女"),
+        (u'男', "男"),
+        (u'女', "女"),
     )
-    sex = models.CharField(max_length=50, choices=gender_choices, default='man')
+    sex = models.CharField(max_length=50, choices=gender_choices, default=u'男')
     eduNumber = models.IntegerField(blank=True, null=True)
     socialNumber = models.IntegerField(blank=True, null=True)
     status = models.CharField(max_length=50, blank=True, null=True)
