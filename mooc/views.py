@@ -499,13 +499,19 @@ def show_my_course(request):
     student = Student.objects.filter(userid=request.user)
     if len(student) != 0:
         student = student[0]
-        my_course = student.course_set.all().order_by('course_week')
+        my_course = student.course_set.filter(course_year="2016-2017").order_by('course_week')
         selected_course_weeks = [c.course_week for c in my_course]
         sumPrice = sum([c.course_price for c in my_course])
         selected_course_names = [c.course_name for c in my_course]
         student_name = student.name_zh
         formated_course_56 = []
         formated_course_78 = []
+
+        #可选择的课程, 首先只需要显示最近一年选的课程.
+
+        now_date = datetime.now()
+        gradute_date = student.graduationdate
+
 
         if int(student.grade[0]) + 1 == 3:
 
