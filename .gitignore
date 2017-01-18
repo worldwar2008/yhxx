@@ -1,5 +1,0 @@
-*.out
-*.log
-*.sqlite3
-weblog/*
-*.sh
