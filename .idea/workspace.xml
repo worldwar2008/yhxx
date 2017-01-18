@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="30a8dd0a-cb97-4ed4-a8b1-29a5b22d03a4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/start.sh" afterPath="$PROJECT_DIR$/start.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/mooc_detail.html" afterPath="$PROJECT_DIR$/templates/mooc_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yhxx/settings.py" afterPath="$PROJECT_DIR$/yhxx/settings.py" />
     </list>
     <ignored path="yhxx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,8 +69,8 @@
       <file leaf-file-name="mooc_detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/mooc_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29925188">
-              <caret line="149" column="34" selection-start-line="149" selection-start-column="34" selection-end-line="149" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.4114713">
+              <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -989,8 +985,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/mooc_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29925188">
-          <caret line="149" column="34" selection-start-line="149" selection-start-column="34" selection-end-line="149" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.4114713">
+          <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
           <folding />
         </state>
       </provider>
