@@ -25,7 +25,19 @@ class Student(models.Model):
     study_stage = models.CharField(max_length=50, blank=True, null=True)
     campus = models.CharField(max_length=50, blank=True, null=True)
     grade = models.CharField(max_length=50, blank=True, null=True)
-    class_name = models.CharField(max_length=50, blank=True, null=True)
+    class_choices = (
+        (u'1班', "1班"),
+        (u'2班', "2班"),
+        (u'3班', "3班"),
+        (u'4班', "4班"),
+        (u'5班', "5班"),
+        (u'6班', "6班"),
+        (u'7班', "7班"),
+        (u'8班', "8班"),
+        (u'9班', "9班"),
+        (u'10班', "10班")
+    )
+    class_name = models.CharField(max_length=50, choices=class_choices, default=u'1班')
     graduationdate = models.DateField(blank=True, null=True)
 
     def __unicode__(self):

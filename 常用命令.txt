@@ -25,3 +25,9 @@ django里面的外键 he onetoone key:区别
 http://www.redicecn.com/html/blog/Django/2011/0503/271.html
 python sqlite3操作:
 http://www.cnblogs.com/yuxc/archive/2011/08/18/2143606.html
+
+sqlite3:
+
+update mooc_student
+SET graduationdate=date('2018-08-30')
+where grade = "4年级"
