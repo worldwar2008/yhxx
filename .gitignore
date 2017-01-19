@@ -4,3 +4,4 @@
 weblog
 *.sh
 *.pyc
+mooc/migrations/*.pyc

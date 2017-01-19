@@ -14,6 +14,12 @@ from django.contrib.auth import update_session_auth_hash
 import logging
 import xlwt
 import cStringIO
+from mooc.forms import UploadFileForm
+from pypinyin import pinyin, lazy_pinyin
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 # create logger
 logger = logging.getLogger("blog.views")
 
@@ -256,3 +262,53 @@ def course_export(request):
     output.seek(0)
     response.write(output.getvalue())
     return response
+
+
+@login_required()
+def student_import(request):
+
+    """
+    按照指定的数据格式,csv类型进行学生信息的导入
+    :param request:
+    :return:
+    """
+    if request.POST:
+        form = UploadFileForm(request.POST, request.FILES)
+        f = request.FILES['file']
+
+        head = f.readline().rstrip('\r\n')
+        if head == "name,sex,campus,study_stage,grade,class_name,birthdate,eduNumber,name_pinyin,name_zh":
+            print "数据格式正确"
+            for line in f.readlines():
+                ll = line.rstrip('\r\n').split(",")
+                print ll
+                user = User(first_name=ll[8],
+                            last_name=ll[8],
+                            username=ll[7])
+                #user.set_password(123456)
+                #user.delete()
+                student = Student(name=ll[0],
+                                  sex=unicode(ll[1]),
+                                  campus=unicode(ll[2]),
+                                  study_stage=unicode(ll[3]),
+                                  grade=unicode(ll[4]),
+                                  class_name=unicode(ll[5]),
+                                  birthdate=unicode(ll[6]),
+                                  eduNumber=ll[7],
+                                  name_zh=unicode(ll[9]), userid=user)
+                #student.save()
+                student.delete()
+
+
+            f.close()
+            return render_to_response('msg-success-import.html', {"messages": "导入成功"}, context_instance=RequestContext(request))
+        else:
+            f.close()
+            return render_to_response('msg-success-import.html', {"messages": "字段不全,请重新检查数据"}, context_instance=RequestContext(request))
+
+
+
+    else:
+        form = UploadFileForm()
+
+    return render_to_response('import.html', {'form': form}, context_instance=RequestContext(request))

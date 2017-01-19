@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生数据导入</title>
+</head>
+<body>
+<div class="page">
+    <div class="pageContent">
+
+        <form action="" method="post"  enctype="multipart/form-data" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone)">
+            {% csrf_token %}
+{#            <div class="pageFormContent" layoutH="56">#}
+{#            <div class="nowrap">#}
+{#                <label>请下载文件模板：</label>#}
+{#                <div><a class="button"  href="file://Users/steven/Documents/work-issue/yhxx/code/yhxx/templates/student_sample.csv" target="dwzExport" ><span>文件模板</span></a></div>#}
+{#            </div>#}
+            <div>
+                请按照如下的CSV模板样例,组织数据:
+                <p>name,sex,campus,study_stage,grade,class_name,birthdate,eduNumber,name_pinyin,name_zh
+                </p>
+                <p>14155378,女,主校区,小学,2年级,1班,2007-11-19,14155399,zhanghanyi,张大
+                </p>
+                <p>14155379,女,主校区,小学,2年级,1班,2007-10-8,14155394,weizitong,魏册
+                </p>
+            </div>
+            <div class="unit">
+                <label>请选择上传文件：</label>
+                <input name="file" type="file" />
+            </div>
+
+        <div class="formBar">
+            <ul>
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+                <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+            </ul>
+        </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
