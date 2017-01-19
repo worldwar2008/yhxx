@@ -23,10 +23,13 @@
 {#    {{ message }}#}
 {#    {% endfor %}#}
 {#    {% endif %}#}
-    <h2>调整选课</h2>
-    <a href="{% url 'course_modify'%}"> (1) 查看你所在的班级, 需要你为其修改课程的列表 </a>
-    <h2>导出报表</h2>
-    <a href="{% url 'course_export'%}"> (1) 导出选课结果数据 </a>
+    <h2>(一) 调整选课</h2>
+    <a href="{% url 'course_modify'%}"> 查看你所在的班级, 需要你为其修改课程的列表 </a>
+    <h2>(二) 导出报表</h2>
+    <a href="{% url 'course_export'%}"> 导出选课结果数据 </a>
+    <h2>(三) 学生数据导入</h2>
+    <a href="{% url 'student_import'%}"> 请导入学生信息 </a>
+
 
 
 
