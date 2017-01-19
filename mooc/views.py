@@ -569,16 +569,6 @@ def show_my_course(request):
             else:
                 formated_course_78.append("待选")
 
-
-        if int(student.grade[0]) + 1 == 3:
-            fill(u"周一")
-            fill(u"周二")
-            fill(u"周三")
-            fill(u"周四")
-            fill(u"周五")
-
-
-        elif int(student.grade[0]) + 1 == 5:
             fill(u"周一")
             fill(u"周二")
             fill(u"周三")
