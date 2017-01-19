@@ -313,7 +313,7 @@ def student_import(request):
 
     return render_to_response('import.html', {'form': form}, context_instance=RequestContext(request))
 
-
+@login_required()
 def changepwd4stu(request):
     if request.POST:
         edunumber = request.POST['q']
@@ -338,4 +338,40 @@ def changepwd4stu(request):
                                       {"rlt": "处理有误,请重新输入"},
                                       context_instance=RequestContext(request))
 
+@login_required()
+def addgrade(request):
+    if request.POST:
+        try:
+
+            students = Student.objects.all()
+            for student in students:
+                student.grade = str(int(student.grade[0])+1)+"年级"
+                student.save()
+
+
+            return render_to_response("indexteacher.html",
+                                          {"ag": "升级成功"},
+                                          context_instance=RequestContext(request))
+        except Exception,e:
+            return render_to_response("indexteacher.html",
+                                          {"ag": "升级失败"},
+                                          context_instance=RequestContext(request))
+@login_required()
+def degrade(request):
+    if request.POST:
+        try:
+
+            students = Student.objects.all()
+            for student in students:
+                student.grade = str(int(student.grade[0])-1)+"年级"
+                student.save()
+
+
+            return render_to_response("indexteacher.html",
+                                          {"dg": "降级成功"},
+                                          context_instance=RequestContext(request))
+        except Exception,e:
+            return render_to_response("indexteacher.html",
+                                          {"dg": "降级失败"},
+                                          context_instance=RequestContext(request))
 

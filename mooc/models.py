@@ -78,7 +78,15 @@ class Course(models.Model):
     course_name = models.CharField(max_length=50)
     course_choose = models.ManyToManyField(Student, blank=True)
     course_teach = models.ManyToManyField(Teacher, blank=True)
-    course_grade = models.CharField(max_length=50, blank=True, null=True)
+    grade_choices = (
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+        ("5", "5"),
+        ("6", "6")
+    )
+    course_grade = models.CharField(max_length=50, choices=grade_choices, default="1")
     course_year = models.CharField(max_length=50, blank=True, null=True)
     detail_weekTime_choice = (
         (u"周一(5-6节)", "周一(5-6节)"),
@@ -93,7 +101,7 @@ class Course(models.Model):
         (u"周四(5-6节)", "周四(5-6节)"),
         (u"周四(7-8节)", "周四(7-8节)"),
         (u"周四(5-8节)", "周四(5-8节)"),
-        (u"周五️(5-6节)", "周五️(5-6节)"),
+        (u"周五(5-6节)", "周五(5-6节)"),
         (u"周五(7-8节)", "周五(7-8节)"),
         (u"周五(5-8节)", "周五(5-8节)")
     )
@@ -103,8 +111,9 @@ class Course(models.Model):
     course_max_num = models.IntegerField(blank=True, null=True)
     type_choice = (
         (u"高端", "高端"),
-        (u"特色",  "特色"),
-        (u"标准", "标准")
+        (u"特色", "特色"),
+        (u"标准", "标准"),
+        (u"必选", "必选")
     )
     course_type = models.CharField(max_length=50, choices=type_choice, default=u"标准")
     course_price = models.IntegerField(blank=True, null=True)
