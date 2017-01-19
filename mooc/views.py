@@ -569,11 +569,11 @@ def show_my_course(request):
             else:
                 formated_course_78.append("待选")
 
-            fill(u"周一")
-            fill(u"周二")
-            fill(u"周三")
-            fill(u"周四")
-            fill(u"周五")
+        fill(u"周一")
+        fill(u"周二")
+        fill(u"周三")
+        fill(u"周四")
+        fill(u"周五")
 
         formated_course_56.reverse()
         formated_course_78.reverse()
