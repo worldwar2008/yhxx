@@ -29,6 +29,16 @@
     <a href="{% url 'course_export'%}"> 导出选课结果数据 </a>
     <h2>(三) 学生数据导入</h2>
     <a href="{% url 'student_import'%}"> 请导入学生信息 </a>
+    <h2>(四) 学生密码充值</h2>
+
+    <form action="changepwd4stu" method="post">
+		{% csrf_token %}
+        <p>通过学生教育id进行查询,修改</p>
+		<input type="text" name="q">
+		<input type="submit" value="Submit">
+	</form>
+
+	<p>{{ rlt }}</p>
 
 
 

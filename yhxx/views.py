@@ -312,3 +312,30 @@ def student_import(request):
         form = UploadFileForm()
 
     return render_to_response('import.html', {'form': form}, context_instance=RequestContext(request))
+
+
+def changepwd4stu(request):
+    if request.POST:
+        edunumber = request.POST['q']
+        students = Student.objects.filter(eduNumber=edunumber)
+        if len(students)==0:
+            return render_to_response("indexteacher.html",
+                                      {"rlt": "你输入的教育id有误,或者此学生不存在,请重新输入"},
+                                      context_instance=RequestContext(request))
+        else:
+            try:
+                student = students[0]
+                user = student.userid
+                user.set_password(123456)
+                user.save()
+                info = [student.name_zh, "更新成功", "默认密码是:123456"]
+                return render_to_response("indexteacher.html",
+                                      {"rlt": " ".join(info)},
+                                      context_instance=RequestContext(request))
+            except Exception,e:
+                print e
+                return render_to_response("indexteacher.html",
+                                      {"rlt": "处理有误,请重新输入"},
+                                      context_instance=RequestContext(request))
+
+
