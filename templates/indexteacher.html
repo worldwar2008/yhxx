@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
+<style type="text/css">
+    p{
+         text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/
+      }
+    form{
+         text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/
+      }
+
+</style>
 <body>
 
 
 {% if request.user.is_authenticated %}
-    <p>{{ request.user }}  用户, 您已经登录; <a href="{% url 'logout' %}">登出</a></p>
+    <p>{{ request.user }}  用户, 您已经登录; &nbsp 如要登出,请点击 <a href="{% url 'logout' %}">登出</a></p>
 
-    <h1>老师,  您好: </h1>
+    <h1>尊敬的老师: </h1>
     <p>请你在为学生们选课之前的时候,先操作列表中的测试姓名, 简单熟悉一下具体的流程,再为同学们选择课程</p>
-    <p>选课的规则:</p>
-    <p> 1.不能删除学生们自己选择的课程</p>
-    <p> 2.选课后,如果当前课程满足了其最低开课人数, 也不能删除</p>
-    <p> 3.不能超过最大开班人数</p>
+    <p>具体的选课的规则:</p>
+    <p> <i>
+        1.不能删除学生们自己选择的课程 <br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2.选课后,如果当前课程满足了其最低开课人数, 也不能删除 <br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3.不能超过最大开班人数</i> </p>
 
 
 {#    {% if messages %}#}
@@ -24,34 +34,33 @@
 {#    {% endfor %}#}
 {#    {% endif %}#}
     <h2>(一) 调整选课</h2>
-    <a href="{% url 'course_modify'%}"> 查看你所在的班级, 需要你为其修改课程的列表 </a>
+    <p>查看你所在的班级中, 需要你为其修改课程的<a href="{% url 'course_modify'%}"> <i>列表</i> </a></p>
     <h2>(二) 导出报表</h2>
-    <a href="{% url 'course_export'%}"> 导出选课结果数据 </a>
+    <p>选课结果数据 <a href="{% url 'course_export'%}"> <i>导出</i> </a></p>
     <h2>(三) 学生数据导入</h2>
     <p>样例(格式:csv,注意:导入数据中的年级数需要比真实年级小一级):</p>
-    <p>name,sex,campus,study_stage,grade,class_name,birthdate,eduNumber,name_pinyin,name_zh
-    </p>
+    <p>name,sex,campus,study_stage,grade,class_name,birthdate,eduNumber,name_pinyin,name_zh</p>
     <p>1111111,女,主校区,小学,2年级,1班,2007-11-19,12345678,yihaixiaoxue,怡海小学
     </p>
+    <p>按照上述格式, <a href="{% url 'student_import'%}"> <i>导入</i> </a> 学生信息</p>
 
-    <a href="{% url 'student_import'%}"> 请导入学生信息 </a>
-    <h2>(四) 学生密码充值</h2>
+    <h2>(四) 学生密码重置</h2>
 
     <form action="changepwd4stu" method="post">
 		{% csrf_token %}
-        <p>通过学生教育id进行查询,修改</p>
+        <p>通过学生教育id进行查询,进而修改密码为初始密码</p>
 		<input type="text" name="q">
 		<input type="submit" value="修改">
 	</form>
 
 	<p>{{ rlt }}</p>
 
-    <h2>(五) 年级升级</h2>
-    <p>每次都是将全部的学生的年级进行提高,超过六年级的设置成毕业<p>
+    <h2>(五) 年级整体修改</h2>
+    <p>每次都是将全部的学生的年级进行+1, 超过六年级的设置成毕业<p>
     <form action="addgrade" method="post">
-		{% csrf_token %}
-		<input type="submit" value="升级">
-	</form>
+        {% csrf_token %}
+        <input type="submit" value="升级">
+    </form>
     <p>{{ ag }}</p>
 
     <form action="degrade" method="post">
@@ -59,10 +68,6 @@
 		<input type="submit" value="降级">
 	</form>
     <p>{{ dg}}</p>
-
-
-
-
 
 
 {% else %}
