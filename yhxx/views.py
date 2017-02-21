@@ -13,6 +13,7 @@ from django.template.response import TemplateResponse
 from django.contrib.auth import update_session_auth_hash
 import logging
 import xlwt
+from datetime import datetime
 import cStringIO
 from mooc.forms import UploadFileForm
 from pypinyin import pinyin, lazy_pinyin
@@ -153,8 +154,17 @@ def change_pwd_done(request, username='',
 def course_canceled(request):
     # 主要是需要筛选掉选课人数不足的学生,这些学生的课程自动释放;
     # 如果选课人数满足要求,则这些学生的课则不能再动了;
+    now_date = datetime.now()
+    if (now_date.month < 9):
+        # 9月份之前显示上学期的课程,9月份之后显示下学期的选择的课程
+        course_y = str(now_date.year-1)+"-"+str(now_date.year)
+        #print "course_year",course_year
+    else:
+        #9月份之后,列表就会显示下学年的课程了
+        course_y = str(now_date.year)+"-"+str(now_date.year+1)
+        #print "course_year", course_year
     noteach = Course.objects.filter(course_teach__isnull=True)
-    allCourse = Course.objects.all().order_by('course_type')
+    allCourse = Course.objects.filter(course_year=course_y).order_by('course_type')
     insuffStu = []
     for c in allCourse:
         if c.course_min_num == 0:
