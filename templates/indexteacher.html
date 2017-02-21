@@ -53,21 +53,21 @@
 		<input type="submit" value="修改">
 	</form>
 
-	<p>{{ rlt }}</p>
-
-    <h2>(五) 年级整体修改</h2>
-    <p>每次都是将全部的学生的年级进行+1, 超过六年级的设置成毕业<p>
-    <form action="addgrade" method="post">
-        {% csrf_token %}
-        <input type="submit" value="升级">
-    </form>
-    <p>{{ ag }}</p>
-
-    <form action="degrade" method="post">
-		{% csrf_token %}
-		<input type="submit" value="降级">
-	</form>
-    <p>{{ dg}}</p>
+{#	<p>{{ rlt }}</p>#}
+{##}
+{#    <h2>(五) 年级整体修改</h2>#}
+{#    <p>每次都是将全部的学生的年级进行+1, 超过六年级的设置成毕业<p>#}
+{#    <form action="addgrade" method="post">#}
+{#        {% csrf_token %}#}
+{#        <input type="submit" value="升级">#}
+{#    </form>#}
+{#    <p>{{ ag }}</p>#}
+{##}
+{#    <form action="degrade" method="post">#}
+{#		{% csrf_token %}#}
+{#		<input type="submit" value="降级">#}
+{#	</form>#}
+{#    <p>{{ dg}}</p>#}
 
 
 {% else %}
