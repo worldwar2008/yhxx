@@ -43,7 +43,7 @@ def mooc_list(request, course_time):
         tmp_week += "(7-8节)"
 
     student = Student.objects.filter(userid=request.user)
-    student_grade = int(student[0].grade[0]) + 1
+    student_grade = 6-(student.graduationdate-datetime.now()).year
 
     ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade).order_by('course_type')
 
@@ -512,8 +512,7 @@ def show_my_course(request):
 
         # graduationdate 字段类型需要设置成必填字段
         grade = 6-(student.graduationdate-now_date).year
-        pr_courses = Course.objects.filter(course_type=u"必选", course_grade=str(grade),
-                                       course_year=course_year)
+        pr_courses = Course.objects.filter(course_type=u"必选", course_grade=str(grade), course_year=course_year)
         my_course = student.course_set.filter(course_year=course_year).order_by('course_week')
         my_course_ids = [id for id in my_course]
         for c in pr_courses:
