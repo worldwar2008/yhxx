@@ -307,6 +307,7 @@ def student_import(request):
                                   birthdate=unicode(ll[6]),
                                   eduNumber=ll[7],
                                   name_zh=unicode(ll[9]),
+                                  graduationdate=unicode(ll[10]),
                                   userid=user)
                 student.save()
                 #student.delete()
