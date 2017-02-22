@@ -43,7 +43,7 @@ def mooc_list(request, course_time):
         tmp_week += "(7-8节)"
 
     student = Student.objects.filter(userid=request.user)
-    student_grade = 6-(student.graduationdate-datetime.now()).year
+    student_grade = 6-((student[0].graduationdate-datetime.now().date()).days/365)
 
     ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade).order_by('course_type')
 
