@@ -287,7 +287,7 @@ def student_import(request):
         f = request.FILES['file']
 
         head = f.readline().rstrip('\r\n')
-        if head == "name,sex,campus,study_stage,grade,class_name,birthdate,eduNumber,name_pinyin,name_zh":
+        if head == "name,sex,campus,study_stage,grade,class_name,birthdate,eduNumber,name_pinyin,name_zh,graduationdate":
             print "数据格式正确"
             for line in f.readlines():
                 ll = line.rstrip('\r\n').split(",")
