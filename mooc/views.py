@@ -500,7 +500,7 @@ def show_my_course(request):
 
     if len(students) != 0:
         student = students[0]
-        now_date = datetime.now()
+        now_date = datetime.now().date()
         if (now_date.month < 9):
             # 9月份之前显示上学期的课程,9月份之后显示下学期的选择的课程
             course_year = str(now_date.year-1)+"-"+str(now_date.year)
