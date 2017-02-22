@@ -511,7 +511,7 @@ def show_my_course(request):
             #print "course_year", course_year
 
         # graduationdate 字段类型需要设置成必填字段
-        grade = 6-(student.graduationdate-now_date).year
+        grade = 6-((student.graduationdate-now_date).days)/365
         pr_courses = Course.objects.filter(course_type=u"必选", course_grade=str(grade), course_year=course_year)
         my_course = student.course_set.filter(course_year=course_year).order_by('course_week')
         my_course_ids = [id for id in my_course]
