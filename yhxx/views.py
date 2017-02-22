@@ -164,7 +164,9 @@ def course_canceled(request):
         course_y = str(now_date.year)+"-"+str(now_date.year+1)
         #print "course_year", course_year
     noteach = Course.objects.filter(course_teach__isnull=True)
-    allCourse = Course.objects.filter(course_year=course_y).order_by('course_type')
+    student = Student.objects.filter(userid=request.user.id)[0]
+    student_grade = 6- ((student.graduationdate-datetime.now().date()).days/365)
+    allCourse = Course.objects.filter(course_year=course_y, course_grade=student_grade).order_by('course_type')
     insuffStu = []
     for c in allCourse:
         if c.course_min_num == 0:
