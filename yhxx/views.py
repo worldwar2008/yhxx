@@ -295,7 +295,8 @@ def student_import(request):
                 user = User(first_name=ll[8],
                             last_name=ll[8],
                             username=ll[7])
-                #user.set_password(123456)
+                user.set_password(123456)
+                user.save()
                 #user.delete()
                 student = Student(name=ll[0],
                                   sex=unicode(ll[1]),
@@ -305,7 +306,8 @@ def student_import(request):
                                   class_name=unicode(ll[5]),
                                   birthdate=unicode(ll[6]),
                                   eduNumber=ll[7],
-                                  name_zh=unicode(ll[9]), userid=user)
+                                  name_zh=unicode(ll[9]),
+                                  userid=user)
                 student.save()
                 #student.delete()
 
