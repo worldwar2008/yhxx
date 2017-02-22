@@ -306,9 +306,8 @@ def student_import(request):
                                   birthdate=unicode(ll[6]),
                                   eduNumber=ll[7],
                                   name_zh=unicode(ll[9]), userid=user)
-                #student.save()
-                student.delete()
-
+                student.save()
+                #student.delete()
 
             f.close()
             return render_to_response('msg-success-import.html', {"messages": "导入成功"}, context_instance=RequestContext(request))
