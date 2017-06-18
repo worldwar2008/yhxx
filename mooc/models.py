@@ -39,7 +39,7 @@ class Student(models.Model):
     )
     class_name = models.CharField(max_length=50, choices=class_choices, default=u'1班')
     graduationdate = models.DateField(blank=True, null=True)
-
+    owner = models.IntegerField(blank=True, null=True)
     def __unicode__(self):
         return self.name
 

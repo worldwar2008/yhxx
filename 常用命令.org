@@ -1,17 +1,18 @@
-用来修改Django中的账户下的密码
+* 常用命令
+** 用来修改Django中的账户下的密码
 python manage.py changepassword username
 
-代码提交上线的时候,需要将Debug模式改成False模式,可以自己在settings.py里面添加
+** 代码提交上线的时候,需要将Debug模式改成False模式,可以自己在settings.py里面添加
 ALLOWED_HOSTS = ['www.outofmemory.cn']
 ALLOWED_HOSTS = ['*']   这样就在任何域名下都可以生效了，不过django不推荐这么干
 
-在模型里面, manytomany这个概念要多注意;
+** 在模型里面, manytomany这个概念要多注意;
 
-在开发的过程中,需要注意的几个地方是:
+** 在开发的过程中,需要注意的几个地方是:
 1. 同一课由于在一周内上的内容相同,因此每门课每周最多上一次就可以了.
 2. 高端和特色的人数不足的话,需要将其转移到普通课程里面去,进行重新分配.
 
-djnago 模板语言:
+** djnago 模板语言:
 with 用法:http://stackoverflow.com/questions/7079804/django-with-tags-within-if-else-tags
 需要将用户名转化成字母,需要利用的python库:http://pypinyin.mozillazg.com/en/master/usage.html#id2
 http://djangobook.py3k.cn/2.0/chapter04/
@@ -21,7 +22,7 @@ http://lishiguang.iteye.com/blog/1332529/
 http://doc.okbase.net/qwj-sysu/archive/121800.html
 http://stackoverflow.com/questions/1107737/numeric-for-loop-in-django-templates
 
-django里面的外键 he onetoone key:区别
+** django里面的外键 和 onetoone key:区别
 http://www.redicecn.com/html/blog/Django/2011/0503/271.html
 python sqlite3操作:
 http://www.cnblogs.com/yuxc/archive/2011/08/18/2143606.html
