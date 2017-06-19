@@ -374,13 +374,10 @@ def addgrade(request):
 def degrade(request):
     if request.POST:
         try:
-
             students = Student.objects.all()
             for student in students:
                 student.grade = str(int(student.grade[0])-1)+"年级"
                 student.save()
-
-
             return render_to_response("indexteacher.html",
                                           {"dg": "降级成功"},
                                           context_instance=RequestContext(request))

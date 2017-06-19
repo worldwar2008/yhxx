@@ -9,11 +9,12 @@ from django.forms.formsets import formset_factory
 from django.contrib.auth.models import User
 from datetime import datetime
 import logging
+from libs import func_date
 
 # Create your views here.
 
 logger = logging.getLogger("blog.views")
-
+month_milestone = 6
 
 @login_required
 def mooc_list(request, course_time):
@@ -44,10 +45,10 @@ def mooc_list(request, course_time):
 
     student = Student.objects.filter(userid=request.user)
     student_grade = 6-((student[0].graduationdate-datetime.now().date()).days/365)
+    course_year = func_date.get_course_year()
 
-    ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade).order_by('course_type')
-
-    long_ml = Course.objects.filter(course_week=long_tmp_week, course_grade=student_grade).order_by('course_type')
+    ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade, course_year=course_year).order_by('course_type')
+    long_ml = Course.objects.filter(course_week=long_tmp_week, course_grade=student_grade, course_year=course_year).order_by('course_type')
 
     notice_tishi = unicode(Notice.objects.filter(name=u"选课提示").values("describe")[0]["describe"])
 
@@ -501,18 +502,13 @@ def show_my_course(request):
     if len(students) != 0:
         student = students[0]
         now_date = datetime.now().date()
-        if (now_date.month < 9):
-            # 9月份之前显示上学期的课程,9月份之后显示下学期的选择的课程
-            course_year = str(now_date.year-1)+"-"+str(now_date.year)
-            #print "course_year",course_year
-        else:
-            #9月份之后,列表就会显示下学年的课程了
-            course_year = str(now_date.year)+"-"+str(now_date.year+1)
-            #print "course_year", course_year
-
+        course_year = func_date.get_course_year()
+        logger.info("course_year: "+ str(course_year))
         # graduationdate 字段类型需要设置成必填字段
         grade = 6-((student.graduationdate-now_date).days)/365
+        logger.info("student_grade: "+ student.name_zh+" "+ str(grade))
         pr_courses = Course.objects.filter(course_type=u"必选", course_grade=str(grade), course_year=course_year)
+        logger.info("pr_courses"+str(pr_courses.values()))
         my_course = student.course_set.filter(course_year=course_year).order_by('course_week')
         my_course_ids = [id for id in my_course]
         for c in pr_courses:
@@ -524,15 +520,15 @@ def show_my_course(request):
                 pass
         my_course = student.course_set.filter(course_year=course_year).order_by('course_week')
         selected_course_weeks = [c.course_week for c in my_course]
+        logger.info("selected-course-weeks" + ",".join(selected_course_weeks))
         sumPrice = sum([c.course_price for c in my_course])
         selected_course_names = [c.course_name for c in my_course]
+        logger.info("selected-course-weeks" + ",".join(selected_course_names))
         student_name = student.name_zh
         formated_course_56 = []
         formated_course_78 = []
 
         #可选择的课程, 首先只需要显示最近一年选的课程.
-
-
         gradute_date = student.graduationdate
 
         def fill(week):
@@ -578,11 +574,14 @@ def show_my_course(request):
 
         formated_course_56.reverse()
         formated_course_78.reverse()
+        logger.info("formated 56" + ",".join(formated_course_56))
+        logger.info("formated 78" + ",".join(formated_course_78))
 
         notice_tongzhi = unicode(Notice.objects.filter(name=u"通知").values("describe")[0]["describe"])
         notice_left1 = unicode(Notice.objects.filter(name=u"高端课程费用确认").values("describe")[0]["describe"])
         notice_left2 = unicode(Notice.objects.filter(name=u"课程缴费详情").values("describe")[0]["describe"])
         notice_tishi = unicode(Notice.objects.filter(name=u"选课提示").values("describe")[0]["describe"])
+
         return render(request, 'mooc_select_show.html',
                       {'user': request.user, 'my_course': my_course, 'sumPrice': sumPrice,
                        'selected_course_names': selected_course_weeks,
