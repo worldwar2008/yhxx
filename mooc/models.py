@@ -120,7 +120,7 @@ class Course(models.Model):
     course_price1 = models.IntegerField(blank=True, null=True)
     course_price2 = models.IntegerField(blank=True, null=True)
     course_price3 = models.IntegerField(blank=True, null=True)
-    grade_can_choose = models.CharField(max_length=50, choices=grade_choices, default="1")
+    grade_can_choose = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         return self.course_name
