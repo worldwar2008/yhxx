@@ -47,7 +47,7 @@ def mooc_list(request, course_time):
     student_grade = 6-((student[0].graduationdate-datetime.now().date()).days/365)
     course_year = func_date.get_course_year()
 
-    ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade, course_year=course_year).order_by('course_type')
+    ml = Course.objects.filter(course_week=tmp_week, course_year=course_year, grade_can_choose__contains=student_grade).order_by('course_type')
     long_ml = Course.objects.filter(course_week=long_tmp_week, course_grade=student_grade, course_year=course_year).order_by('course_type')
 
     notice_tishi = unicode(Notice.objects.filter(name=u"选课提示").values("describe")[0]["describe"])
@@ -58,11 +58,13 @@ def mooc_list(request, course_time):
     #     my_course = student.course_set.all().order_by('course_week')
     #     selected_course_weeks = [c.course_week for c in my_course]
     #     sumPrice = sum([c.course_price for c in my_course])
-    if len(long_ml) == 0:
 
-        return render_to_response('mooc_list.html', {'ml': ml, 'notice_tishi': notice_tishi})
+    # 针对不同的业主还要显示不同的价格
+    ow = student[0].owner
+    if len(long_ml) == 0:
+        return render_to_response('mooc_list.html', {'ml': ml, 'notice_tishi': notice_tishi, "owner": ow})
     else:
-        return render_to_response('mooc_list.html', {'ml': ml, 'long_ml': long_ml, 'notice_tishi': notice_tishi})
+        return render_to_response('mooc_list.html', {'ml': ml, 'long_ml': long_ml, 'notice_tishi': notice_tishi, "owner":ow})
 
 @login_required
 def show_stu_mooc_list(request, course_time, stu_user_id):
@@ -521,7 +523,20 @@ def show_my_course(request):
         my_course = student.course_set.filter(course_year=course_year).order_by('course_week')
         selected_course_weeks = [c.course_week for c in my_course]
         logger.info("selected-course-weeks" + ",".join(selected_course_weeks))
-        sumPrice = sum([c.course_price for c in my_course])
+        # 2016-2017的算法
+        #sumPrice = sum([c.course_price for c in my_course])
+        # 2017-2018的算法
+
+        def get_sumprice():
+            if student.owner == 1:
+                return sum([mc.course_price1 for mc in my_course])
+            elif student.owner == 2:
+                return sum([mc.course_price2 for mc in my_course])
+            elif student.owner == 3:
+                return sum([mc.course_price3 for mc in my_course])
+            else:
+                return sum([mc.course_price for mc in my_course])
+        sumPrice = get_sumprice()
         selected_course_names = [c.course_name for c in my_course]
         logger.info("selected-course-weeks" + ",".join(selected_course_names))
         student_name = student.name_zh

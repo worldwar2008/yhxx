@@ -89,7 +89,15 @@
                                         href="{% url 'mooc_detail' id=classes.id %}">{{ classes.course_name }}</a></td>
                                 <td WIDTH=200>{{ classes.course_type }}   </td>
                                 <td WIDTH=200>{{ classes.course_week }}   </td>
-                                <td WIDTH=200>{{ classes.course_price }}/学期  </td>
+                                {% if owner == 1 %}
+                                    <td WIDTH=200>{{ classes.course_price1 }}/学期   </td>
+                                {% elif owner == 2 %}
+                                    <td WIDTH=200>{{ classes.course_price2 }}/学期   </td>
+                                {% elif owner == 3 %}
+                                    <td WIDTH=200>{{ classes.course_price3 }}/学期   </td>
+                                {% else %}
+                                    <td WIDTH=200>{{ classes.course_price }}/学期   </td>
+                                {% endif %}
                                 <td WIDTH=200>{{ classes.course_choose.count }}   </td>
 {#                                <td WIDTH=200>{{ classes.course_min_num }}   </td>#}
 {#                                <td WIDTH=200>{{ classes.course_max_num }}   </td>#}
@@ -105,7 +113,17 @@
                                         href="{% url 'mooc_detail' id=classes.id %}">{{ classes.course_name }}</a></td>
                                 <td WIDTH=200>{{ classes.course_type }}   </td>
                                 <td WIDTH=200>{{ classes.course_week }}   </td>
-                                <td WIDTH=200>{{ classes.course_price }}/学期   </td>
+                                {% if owner == 1 %}
+                                    <td WIDTH=200>{{ classes.course_price1 }}/学期   </td>
+                                {% elif owner == 2 %}
+                                    <td WIDTH=200>{{ classes.course_price2 }}/学期   </td>
+                                {% elif owner == 3 %}
+                                    <td WIDTH=200>{{ classes.course_price3 }}/学期   </td>
+                                {% else %}
+                                    <td WIDTH=200>{{ classes.course_price }}/学期   </td>
+                                {% endif %}
+
+
                                 <td WIDTH=200>{{ classes.course_choose.count }}   </td>
 {#                                <td WIDTH=200>{{ classes.course_min_num }}   </td>#}
 {#                                <td WIDTH=200>{{ classes.course_max_num }}   </td>#}
