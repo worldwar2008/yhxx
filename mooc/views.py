@@ -148,7 +148,7 @@ def course_add(request, id):
     # bz_et = "2016-07-11 11:00:00"
 
     gd_st = unicode(Notice.objects.filter(name=u"高端选课开始时间").values("describe")[0]["describe"])
-    gd_et = unicode(Notice.objects.filter(name=u"特色选课结束时间").values("describe")[0]["describe"])
+    gd_et = unicode(Notice.objects.filter(name=u"高端选课结束时间").values("describe")[0]["describe"])
     ts_st = unicode(Notice.objects.filter(name=u"特色选课开始时间").values("describe")[0]["describe"])
     ts_et = unicode(Notice.objects.filter(name=u"特色选课结束时间").values("describe")[0]["describe"])
     bz_st = unicode(Notice.objects.filter(name=u"标准选课开始时间").values("describe")[0]["describe"])
