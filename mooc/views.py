@@ -135,6 +135,11 @@ def show_stu_mooc_detail(request, id, stu_user_id):
 @login_required
 def course_add(request, id):
     student = Student.objects.filter(userid=request.user)
+    yz_st = unicode(Notice.objects.filter(name=u"业主可以选课开始时间").values("describe")[0]["describe"])
+    now_time = datetime.now()
+    yz_st = datetime.strptime(yz_st, "%Y-%m-%d %H:%M:%S")
+    if (now_time < yz_st) and (int(student[0].owner) not in [2, 3]):
+        return render_to_response('msg.html', {'messages': '"您暂时还不能选课，有问题请咨询学校老师.'})
     course = Course.objects.get(id=id)
     dir = '/index/show'
 
