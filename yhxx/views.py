@@ -152,17 +152,19 @@ def change_pwd_done(request, username='',
 
 
 def course_canceled(request):
+    from libs import func_date
     # 主要是需要筛选掉选课人数不足的学生,这些学生的课程自动释放;
     # 如果选课人数满足要求,则这些学生的课则不能再动了;
     now_date = datetime.now()
-    if (now_date.month < 9):
-        # 9月份之前显示上学期的课程,9月份之后显示下学期的选择的课程
-        course_y = str(now_date.year-1)+"-"+str(now_date.year)
-        #print "course_year",course_year
-    else:
-        #9月份之后,列表就会显示下学年的课程了
-        course_y = str(now_date.year)+"-"+str(now_date.year+1)
-        #print "course_year", course_year
+    course_y = func_date.get_course_year()
+    # if (now_date.month < 9):
+    #     # 9月份之前显示上学期的课程,9月份之后显示下学期的选择的课程
+    #     course_y = str(now_date.year-1)+"-"+str(now_date.year)
+    #     #print "course_year",course_year
+    # else:
+    #     #9月份之后,列表就会显示下学年的课程了
+    #     course_y = str(now_date.year)+"-"+str(now_date.year+1)
+    #     #print "course_year", course_year
     noteach = Course.objects.filter(course_teach__isnull=True)
     student = Student.objects.filter(userid=request.user.id)[0]
     student_grade = 6- ((student.graduationdate-datetime.now().date()).days/365)
