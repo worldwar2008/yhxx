@@ -68,6 +68,17 @@ if __name__ == "__main__":
             assert authenticate(username=eduNumber, password=password)
             print 'User {0} successfully created.'.format(username)
 
+        def reset_pwd(eduNumber, name):
+            username = eduNumber
+            print 'Reset user {0}.'.format(username)
+            user = User.objects.get(username=eduNumber, first_name=name)
+            print "user.values", user.student.name_zh
+            password = '123456'
+            user.set_password(password)
+            user.save()
+            assert authenticate(username=eduNumber, password=password)
+            print 'User {0} successfully reset.'.format(username)
+
         try:
             rr = User.objects.filter(username=eduNumber)
             #print rr.values()
@@ -76,15 +87,20 @@ if __name__ == "__main__":
                 userid_id = user["id"]
 
                 print "已经存在此用户，userid_id: ", userid_id
-                # if stu["grade"] != grade:
-                #     print """this {1} old grade is {1}, but new grade is {2}""".format(userid_id, stu["grade"], grade)
-                #
-                # if stu["owner"] != owner:
-                #     print """this {1} old owner is {1}, but new owner is {2}""".format(userid_id, stu["owner"], owner)
-                conn.execute("""UPDATE mooc_student
-                                SET grade = '%s', owner='%s'
-                                WHERE eduNumber='%s'; """ % (unicode(grade), owner, eduNumber))
-                conn.commit()
+                # conn.execute("""UPDATE mooc_student
+                #                 SET grade = '%s', owner='%s'
+                #                 WHERE eduNumber='%s'; """ % (unicode(grade), owner, eduNumber))
+                # conn.commit()
+
+                # 用户密码重置
+                username = eduNumber
+                print 'Reset user {0}.'.format(username)
+                user = User.objects.get(username=eduNumber, first_name=name)
+                print "user.values", user
+                password = '123456'
+                user.set_password(password)
+                assert authenticate(username=eduNumber, password=password)
+                user.save()
 
             else:
                 create_new_user(eduNumber, name)
