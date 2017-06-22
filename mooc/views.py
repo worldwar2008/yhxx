@@ -328,14 +328,12 @@ def course_delete(request, id):
     course = Course.objects.get(id=id)
     dir = '/index/show'
 
-    gd_st = "2016-07-08 15:00:00"
-    gd_et = "2016-07-11 11:00:00"
-
-    ts_st = "2016-07-09 10:00:00"
-    ts_et = "2016-07-11 11:00:00"
-
-    bz_st = "2016-07-10 20:30:00"
-    bz_et = "2016-07-11 11:00:00"
+    gd_st = unicode(Notice.objects.filter(name=u"高端选课开始时间").values("describe")[0]["describe"])
+    gd_et = unicode(Notice.objects.filter(name=u"高端选课结束时间").values("describe")[0]["describe"])
+    ts_st = unicode(Notice.objects.filter(name=u"特色选课开始时间").values("describe")[0]["describe"])
+    ts_et = unicode(Notice.objects.filter(name=u"特色选课结束时间").values("describe")[0]["describe"])
+    bz_st = unicode(Notice.objects.filter(name=u"标准选课开始时间").values("describe")[0]["describe"])
+    bz_et = unicode(Notice.objects.filter(name=u"标准选课结束时间").values("describe")[0]["describe"])
 
     if len(student) != 0:
         student = student[0]
