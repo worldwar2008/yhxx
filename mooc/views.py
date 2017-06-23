@@ -600,6 +600,18 @@ def show_my_course(request):
         notice_left2 = unicode(Notice.objects.filter(name=u"课程缴费详情").values("describe")[0]["describe"])
         notice_tishi = unicode(Notice.objects.filter(name=u"选课提示").values("describe")[0]["describe"])
 
+        def yezhu(student):
+            ow = student.owner
+            if ow == 1:
+                return "业主"
+            elif ow == 2:
+                return "非业主班"
+            elif ow == 3:
+                return "非业主"
+            else:
+                return "其他"
+        yz = yezhu(student)
+
         return render(request, 'mooc_select_show.html',
                       {'user': request.user, 'my_course': my_course, 'sumPrice': sumPrice,
                        'selected_course_names': selected_course_weeks,
@@ -608,7 +620,7 @@ def show_my_course(request):
                        'notice_tongzhi': notice_tongzhi,
                        'notice_left1': notice_left1,
                        'notice_left2': notice_left2,
-                       "notice_tishi": notice_tishi})
+                       "notice_tishi": notice_tishi, "yezhu_type":yz})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.all().order_by('id')

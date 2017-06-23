@@ -229,7 +229,7 @@
         <div class="main">
             <div br class="about-us">
                 <div class="about-header">
-                    <h2 class="student_name">你好, {{ student_name }}</h2>
+                    <h2 class="student_name">你好, {{ student_name }}  (类型：{{ yezhu_type }})</h2>
                     <p><a href="/accounts/change_pwd/{{ user }}">密码修改</a></p>
                     <h2 class="notice"> 通知: {{ notice_tongzhi }}
                         </h2>
@@ -321,7 +321,6 @@
                             {#                            <td HEIGHT=40 WIDTH=200>课程名</td>#}
                             <td WIDTH=300 HEIGHT=40>下午(7-8节)</td>
 
-                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=178%}">{{ formated_course_78.pop }}</a></td>
 {#                            {% if student_grade == 3 %}#}
 {#                                <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>#}
 {#                            {% elif student_grade == 5 %}#}
@@ -338,12 +337,18 @@
 {#                                <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=378%}">{{ formated_course_78.pop }}</a></td>#}
 {#                            {% endif %}#}
 {#                        #}
-                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=278%}">{{ formated_course_78.pop }}</a></td>
-                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=378%}">{{ formated_course_78.pop }}</a></td>
 
-                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=478 %}">{{ formated_course_78.pop }}</a></td>
-                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=578 %}">{{ formated_course_78.pop }}</a></td>
-
+{#                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=178%}">{{ formated_course_78.pop }}</a></td>#}
+{#                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=278%}">{{ formated_course_78.pop }}</a></td>#}
+{#                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=378%}">{{ formated_course_78.pop }}</a></td>#}
+{##}
+{#                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=478 %}">{{ formated_course_78.pop }}</a></td>#}
+{#                            <td WIDTH=300 HEIGHT=50><a href="{% url 'mooc_list' course_time=578 %}">{{ formated_course_78.pop }}</a></td>#}
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
+                            <td WIDTH=300 HEIGHT=50>{{ formated_course_78.pop }}</td>
 
                         </tr>
 
