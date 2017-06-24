@@ -206,7 +206,7 @@ def course_need_modify(request):
 
     logger.info("tech[0].department: " + tech[0].department)
     tech_grade = tech[0].department
-    allStudent = Student.objects.filter(grade=tech_grade)
+    allStudent = Student.objects.all()
 
     student_below_5 = []
 
@@ -229,7 +229,7 @@ def course_need_modify(request):
     #print "没有完全选课成功的人数",len(student_below_5)
 
     return render(request, 'student_not_enough_course.html',
-                  {'student_below_5': student_below_5,'all_student':allStudent})
+                  {'student_below_5': student_below_5, 'all_student': allStudent})
 
 def course_export(request):
     """
