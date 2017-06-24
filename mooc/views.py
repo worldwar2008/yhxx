@@ -96,7 +96,9 @@ def show_stu_mooc_list(request, course_time, stu_user_id):
     student = Student.objects.filter(userid=stu_user_id)
     student_grade = 6-((student[0].graduationdate-datetime.now().date()).days/365)
 
-    ml = Course.objects.filter(course_week=tmp_week, course_grade=student_grade).order_by('course_type')
+    course_year = func_date.get_course_year()
+    ml = Course.objects.filter(course_week=tmp_week, course_year=course_year,
+                               grade_can_choose__contains=student_grade).order_by('course_type')
 
     long_ml = Course.objects.filter(course_week=long_tmp_week, course_grade=student_grade).order_by('course_type')
 
